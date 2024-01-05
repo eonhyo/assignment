@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  background-color: #ddf2fd;
+  font-family: Barlow;
+}
+
+/*header*/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #427d9d;
+  padding: 0px 30px;
+  font-family: Roboto Slab;
+}
+
+.logo {
+  width: 60px;
+  height: 30px;
+}
+
+.logo2 {
+  width: 130px;
+  height: 150px;
+}
+
+.title {
+  font-size: 50px;
+  color: whitesmoke;
+}
+
+.text {
+  font-size: 25px;
+  color: whitesmoke;
+}
+
+/*nav*/
+
+.section1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  height: 40px;
+  border: 50px;
+  border-radius: 10px;
+  outline: none;
+  background-color: #164863;
+  font-size: 1rem;
+  color: white;
+}
+
+.input::placeholder {
+  color: #427d9d;
+}
+
+.video {
+  width: 100%;
+}
+
+/*Movie list*/
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.movie img {
+  width: 100%;
+}
+
+.movie {
+  width: 500px;
+  margin: 1rem;
+  border-radius: 3px;
+  background-color: #9bbec8;
+  position: relative;
+  overflow: hidden;
+}
+
+.movieinfo {
+  color: whitesmoke;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 1rem;
+  letter-spacing: 0.5px;
+}
+
+.movieinfo h3 {
+  margin-top: 0;
+}
+
+.movieinfo span {
+  background-color: #427d9d;
+  padding: 0.3rem 0.5rem;
+  font-weight: bold;
+}
+
+.overview {
+  /* 숨기는 방법!!!!!*/
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #9bbec8;
+  color: whitesmoke;
+  padding: 1rem;
+  max-height: 100%;
+  transform: translateY(101%);
+  transition: transform 0.3s ease-in; /*천천히 올라오게 하기*/
+}
+
+.movie:hover .overview {
+  transform: translateY(0);
+}
+
+/*auto*/
+
+@media screen and (max-width: 1200px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .logo2 {
+    width: 60px;
+    height: 80px;
+  }
+
+  .text {
+    font-size: 15px;
+  }
+
+  .input {
+    width: 300px;
+    height: 30px;
+  }
+  .movie {
+    display: grid;
+  }
+}
