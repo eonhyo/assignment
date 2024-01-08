@@ -1,4 +1,4 @@
-const API_KEY = "";
+const API_KEY = "api_key=2f7ff395e001967bcd029e4d663de74c";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
@@ -11,13 +11,15 @@ const id = document.getElementById("id");
 
 getMovies(API_URL);
 
-function getMovies(url) {
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data.results);
-      showMovies(data.results);
-    });
+async function getMovies(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data.results);
+    showMovies(data.results);
+  } catch (error) {
+    console.error("Failed to fetch movies:", error);
+  }
 }
 
 const showMovies = (data) => {
