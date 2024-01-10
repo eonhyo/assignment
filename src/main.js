@@ -28,7 +28,8 @@ let slideItems;
 let currentSlide = 0;
 
 const showMovies = (data) => {
-  const clonedMovies = [...data, ...data, ...data];
+  const clonedMovies = [];
+  clonedMovies.splice(0, 0, ...data);
 
   clonedMovies.slice(0, 6).forEach((movie) => {
     const { poster_path, title, vote_average } = movie;
