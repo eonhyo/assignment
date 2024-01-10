@@ -14,24 +14,33 @@
       <form id="login-form">
         <div class="inputWrap">
           <span class="input_label">이름</span
-          ><span class="default_input"> <input type="text" name="name" id="signUp-name" placeholder="Username" /></span>
+          ><span class="default_input">
+            <input type="text" name="name" id="signUp-name" placeholder="Username" autocomplete="off"
+          /></span>
         </div>
         <div class="error_text" id="name-error">이름을 입력하세요</div>
         <div class="inputWrap">
           <span class="input_label">이메일</span
-          ><span class="default_input"> <input type="text" name="email" id="signUp-email" placeholder="Email" /></span>
+          ><span class="default_input">
+            <input type="text" name="email" id="signUp-email" placeholder="Email" autocomplete="off"
+          /></span>
         </div>
         <div class="error_text" id="email-error">이메일을 입력하세요</div>
         <div class="inputWrap">
           <span class="input_label">패스워드</span
           ><span class="default_input">
-            <input type="password" name="password" id="signUp-password" placeholder="Password"
+            <input
+              type="password"
+              name="password"
+              id="signUp-password"
+              placeholder="Password"
+              autocomplete="current-password"
           /></span>
         </div>
         <div class="error_text" id="pw-error">패스워드를 입력하세요</div>
 
         <input class="button" type="submit" value="회원가입하기" id="signUp-button" />
-        <p id="signUp-result">회원가입에 실패했습니다.</p>
+        <p id="signUp-result" class="error_text">회원가입에 실패했습니다.</p>
       </form>
     </main>
   </body>

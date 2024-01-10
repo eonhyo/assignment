@@ -92,12 +92,15 @@ body * {
 }
 
 #signIn-button {
-  margin-bottom: 10px;
+  margin-top: 20px;
+  width: 100%;
+  background-color: rgb(18, 148, 243);
 }
 
 .error_text {
   margin-top: 10px;
   display: none;
+  color: red;
 }
 
 #signUp-result {

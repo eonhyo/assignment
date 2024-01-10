@@ -33,7 +33,7 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
 
   let isAuth = true;
   if (authFunc.isBlankText(name)) {
-    showText(nameErr, "아이디를 입력하세요");
+    showText(nameErr, "이름을 입력하세요");
     isAuth = false;
   }
   if (!authFunc.emailCheck(email)) {
@@ -45,16 +45,18 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
     isAuth = false;
   }
 
-  if (authFunc.isBlankText(password)) {
-    showText(passwordErr, "패스워드를 입력하세요");
-    isAuth = false;
-  }
   if (password.length < 6) {
     showText(passwordErr, "길이는 6자 이상 입력해 주세요.");
     isAuth = false;
   }
+
+  if (authFunc.isBlankText(password)) {
+    showText(passwordErr, "패스워드를 입력하세요");
+    isAuth = false;
+  }
+
   console.log(email, password);
-  isAuth ? signUpFun(email, password, successSignup, errorSignup) : undefined;
+  isAuth ? signUpFun(email, password, successSignup, errorSignup) : null;
 });
 
 const successSignup = () => {
