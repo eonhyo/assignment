@@ -25,6 +25,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 console.log("hello world");
+const imgSrc = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${Math.floor(Math.random() * 100)}`;
 
 export const signUpFun = (email, password, name, success, error) => {
   createUserWithEmailAndPassword(auth, email, password)
@@ -33,8 +34,11 @@ export const signUpFun = (email, password, name, success, error) => {
       console.log("성공");
       const user = userCredential.user;
       console.log("userInfo", user);
-      updateProfile(auth.currentUser, { displayName: name });
-      // success();
+      console.log(imgSrc);
+      updateProfile(auth.currentUser, { displayName: name, photoURL: imgSrc }).then(() => {
+        success();
+      });
+
       // ...
     })
     .catch((error) => {
@@ -53,6 +57,7 @@ export const loginFunc = (email, password, success, fail) => {
       const user = userCredential.user;
       console.log(user);
       localStorage.setItem("userName", user.displayName);
+      localStorage.setItem("userPhoto", user.photoURL);
       success();
       // callback();
 

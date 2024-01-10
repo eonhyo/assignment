@@ -1,5 +1,5 @@
 import { signUpFun } from "./firebase.js";
-import { authFunc, removeText, showText } from "./module.js";
+import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
 
 const nameErr = document.getElementById("name-error");
 const emailErr = document.getElementById("email-error");
@@ -11,7 +11,7 @@ const emailEl = document.getElementById("signUp-email");
 const passwordEl = document.getElementById("signUp-password");
 const infoArray = [nameEl, emailEl, passwordEl];
 
-const resetError = () => {
+const resetErrorMsg = () => {
   errorArray.forEach((el) => {
     removeText(el);
   });
@@ -19,14 +19,13 @@ const resetError = () => {
 
 infoArray.forEach((info, i) => {
   info.addEventListener("input", (e) => {
-    console.log("haha");
     e.target.value ? removeText(errorArray[i]) : "";
   });
 });
 
 document.getElementById("signUp-button").addEventListener("click", (event) => {
   event.preventDefault();
-  resetError();
+  resetErrorMsg();
   const name = nameEl.value;
   const email = emailEl.value;
   const password = passwordEl.value;
@@ -55,18 +54,18 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
     isAuth = false;
   }
 
-  console.log(email, password);
   isAuth ? signUpFun(email, password, name, successSignup, errorSignup) : null;
 });
 
 const successSignup = () => {
   const result = document.getElementById("signUp-result");
-  result.style.display = "block";
-  result.innerHTML = "회원가입에 성공했습니다";
+  //result.style.display = "block";
+  //result.innerHTML = "회원가입에 성공했습니다";
+  goToAnotherPage("../sub/test");
 };
 
 const errorSignup = () => {
   const result = document.getElementById("signUp-result");
-  result.style.display = "block";
-  result.innerHTML = "회원가입에 실패했습니다";
+  //result.style.display = "block";
+  //result.innerHTML = "회원가입에 실패했습니다";
 };

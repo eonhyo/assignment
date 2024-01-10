@@ -1,5 +1,9 @@
 export const goToAnotherPage = (pageUrl) => {
-  window.location.href = `${pageUrl}.html`;
+  if (pageUrl !== "/") {
+    window.location.href = `${pageUrl}.html`;
+  } else {
+    window.location.href = pageUrl;
+  }
 };
 
 export const showText = (el, text) => {

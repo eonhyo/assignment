@@ -1,6 +1,10 @@
 import { loginFunc } from "./firebase.js";
 import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
 
+if (localStorage.getItem("userName")) {
+  //goToAnotherPage("../sub/test");
+}
+
 const emailEl = document.getElementById("signIn-email");
 const passwordEl = document.getElementById("signIn-password");
 const infoArray = [emailEl, passwordEl];
@@ -61,5 +65,5 @@ const successLogin = () => {
 };
 
 const failLogin = () => {
-  console.log("signout 하셨습니다.");
+  console.log("로그인에 실패 하셨습니다.");
 };
