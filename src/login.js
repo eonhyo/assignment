@@ -1,5 +1,5 @@
-import { getUserProfile, loginFunc, signOutFunc } from "./firebase.js";
-import { authFunc, removeText, showText } from "./module.js";
+import { loginFunc } from "./firebase.js";
+import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
 
 const emailEl = document.getElementById("signIn-email");
 const passwordEl = document.getElementById("signIn-password");
@@ -17,7 +17,6 @@ const resetError = () => {
 
 infoArray.forEach((info, i) => {
   info.addEventListener("input", (e) => {
-    console.log("haha");
     e.target.value ? removeText(errorArray[i]) : "";
   });
 });
@@ -49,17 +48,18 @@ document.getElementById("signIn-button").addEventListener("click", (event) => {
     isAuth = false;
   }
 
-  isAuth ? loginFunc(email, password, signIn, signOut) : null;
+  isAuth ? loginFunc(email, password, successLogin, failLogin) : null;
 });
 
 // document.getElementById("signOut").addEventListener("click", (event) => {
 //   signOutFunc(signOut);
 // });
 
-const signIn = () => {
+const successLogin = () => {
   console.log("signIn 하셨습니다.");
+  goToAnotherPage("../sub/test");
 };
 
-const signOut = () => {
+const failLogin = () => {
   console.log("signout 하셨습니다.");
 };

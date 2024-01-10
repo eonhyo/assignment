@@ -36,7 +36,7 @@ input:-webkit-autofill:active {
   background-color: transparent !important;
 }
 
-.default_input {
+.defaultInput {
   width: 100%;
   display: block;
   flex: 3;
@@ -51,7 +51,7 @@ input:-webkit-autofill:active {
   box-sizing: border-box;
 }
 
-.input_label {
+.inputLabel {
   flex: 1;
   display: flex;
   align-items: center;
@@ -67,7 +67,7 @@ body * {
   color: #fff !important;
 }
 
-.main-holder {
+.mainHolder {
   max-width: 460px;
   min-width: 290px;
   width: auto;
@@ -76,7 +76,7 @@ body * {
   width: 100%;
 }
 .move-signup-btn {
-  background-color: rgb(18, 148, 243);
+  background-color: transparent;
   width: 100%;
   border: 1px solid #fff;
   height: 50px;
@@ -97,7 +97,7 @@ body * {
   background-color: rgb(18, 148, 243);
 }
 
-.error_text {
+.errorText {
   margin-top: 10px;
   display: none;
   color: red;

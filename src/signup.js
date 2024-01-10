@@ -56,7 +56,7 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
   }
 
   console.log(email, password);
-  isAuth ? signUpFun(email, password, successSignup, errorSignup) : null;
+  isAuth ? signUpFun(email, password, name, successSignup, errorSignup) : null;
 });
 
 const successSignup = () => {

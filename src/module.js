@@ -1,5 +1,5 @@
 export const goToAnotherPage = (pageUrl) => {
-  window.location.href = pageUrl;
+  window.location.href = `${pageUrl}.html`;
 };
 
 export const showText = (el, text) => {

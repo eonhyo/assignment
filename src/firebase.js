@@ -3,11 +3,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
 import {
   getAuth,
+  updateProfile,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-import { goToAnotherPage } from "./module.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,16 +24,18 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 console.log("hello world");
 
-export const signUpFun = (email, password, success, error) => {
+export const signUpFun = (email, password, name, success, error) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       console.log("성공");
       const user = userCredential.user;
-      success();
+      console.log("userInfo", user);
+      updateProfile(auth.currentUser, { displayName: name });
+      // success();
       // ...
     })
     .catch((error) => {
@@ -46,16 +47,21 @@ export const signUpFun = (email, password, success, error) => {
     });
 };
 
-export const loginFunc = (email, password, callback) => {
+export const loginFunc = (email, password, success, fail) => {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      callback();
+      console.log(user);
+      localStorage.setItem("userName", user.displayName);
+      success();
+      // callback();
+
       //goToAnotherPage("/");
       // ...
     })
     .catch((error) => {
+      fail();
       const errorCode = error.code;
       const errorMessage = error.message;
     });
@@ -66,13 +72,9 @@ export const signOutFunc = (callback) => {
     .signOut()
     .then(() => {
       callback();
+      console.log("로그아웃 성공");
     })
     .catch((error) => {
       console.log("로그아웃 실패");
     });
-};
-
-export const getUserProfile = () => {
-  const user = auth.currentUser;
-  return user;
 };
