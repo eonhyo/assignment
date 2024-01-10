@@ -56,4 +56,7 @@ form.addEventListener("submit", (e) => {
   if (searchTerm) {
     getMovies(searchURL + "&query=" + searchTerm);
   }
+  if (!searchTerm) {
+    alert("검색어를 입력하세요.");
+  }
 });

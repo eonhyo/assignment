@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Do+Hyeon&family=Nanum+Pen+Script&family=Roboto+Slab:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    
+
+
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/movie.js"></script>
+    <title>search MOVIE</title>
+  </head>
+
+  <style>
+    .section1{
+      line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+      font-size: 1rem;
+    --toastify-color-light: #fff;
+    --toastify-color-dark: #121212;
+    --toastify-color-info: #3498db;
+    --toastify-color-success: #07bc0c;  
+    --toastify-color-warning: #f1c40f;
+    --toastify-color-error: #e74c3c;
+    --toastify-color-transparent: hsla(0,0%,100%,.7);
+    --toastify-icon-color-info: var(--toastify-color-info);
+    --toastify-icon-color-success: var(--toastify-color-success);
+    --toastify-icon-color-warning: var(--toastify-color-warning);
+    --toastify-icon-color-error: var(--toastify-color-error);
+    --toastify-toast-width: 320px;
+    --toastify-toast-background: #fff;
+    --toastify-toast-min-height: 64px;
+    --toastify-toast-max-height: 800px;
+    --toastify-font-family: sans-serif;
+    --toastify-z-index: 9999;
+    --toastify-text-color-light: #757575;
+    --toastify-text-color-dark: #fff;
+    --toastify-text-color-info: #fff;
+    --toastify-text-color-success: #fff;
+    --toastify-text-color-warning: #fff;
+    --toastify-text-color-error: #fff;
+    --toastify-spinner-color: #616161;
+    --toastify-spinner-color-empty-area: #e0e0e0;
+    --toastify-color-progress-light: linear-gradient(90deg,#4cd964,#5ac8fa,#007aff,#34aadc,#5856d6,#ff2d55);
+    --toastify-color-progress-dark: #bb86fc;
+    --toastify-color-progress-info: var(--toastify-color-info);
+    --toastify-color-progress-success: var(--toastify-color-success);
+    --toastify-color-progress-warning: var(--toastify-color-warning);
+    --toastify-color-progress-error: var(--toastify-color-error);
+    font-family: Noto Sans KR,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    outline: 0 solid transparent;
+    outline-width: 0;
+    display: flex;
+    height: 62px;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 36px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    background: linear-gradient(180deg,#000,transparent);
+    transition-property: background-color;
+    transition-duration: .3s;
+    transition-timing-function: linear;
+    }
+
+    .outer {
+      margin: 10px 10% 10px 10%;
+  overflow-x: hidden;
+}
+    .slider-container {
+    
+      transition: transform .6s ease-in-out;
+    display: flex;
+    width: 100%;   
+  }
+  .slide-item {
+
+    flex : 0 0 auto;
+    width: 100%;
+    height: 100px;
+  }
+  .slide-item img{
+    float: right;
+    width: 50%;
+    height: 100%;  
+  }
+
+  </style>
+  <body>
+    <!--header-->
+    <header>
+      <div class="navbar">
+        <div>
+          <img src="assets/main/1. 로고.png" class="logo" />
+          <a class="text">PROJECT.1</a>
+        </div>
+        <div class="title">
+          <h1>SPARTA MOVIE</h1>
+        </div>
+        <div>
+          <img src="assets/main/2. 아이콘.png" class="logo2" />
+        </div>
+      </div>
+    </header>
+
+    
+    <!--search-->
+    <nav>     
+        <form class="section1" id="form">
+            <img src="assets/main/1. 로고.png" class="logo" />
+          <input id="search" class="input" type="text" placeholder="검색" autofocus />
+          <button>로그인</button>
+          
+        </form>
+      </nav>
+    <div class = "outer">
+      <div class="slider-container">   
+      </div>
+    
+      <button id="prevBtn">이전</button>
+      <button id="nextBtn">다음</button>
+    </div>
+      <!--movie list-->
+      <main id="main">
+        <div class="movie">
+          <img class="card" src="" alt="Image" />
+          <div class="movieinfo">
+            <h3>Movie Title</h3>
+            <span class="green">9.8</span>
+          </div>
+          <div class="overview">
+            <h3>Overview</h3>
+            what's your position
+          </div>
+        </div>
+      </main>
+    </nav>
+
+  
+  </body>
+</html>
+
+
