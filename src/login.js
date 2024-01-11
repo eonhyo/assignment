@@ -1,6 +1,7 @@
 import { loginFunc, loginWithGoogle } from "./firebase.js";
-import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
+import { validationChecker, goToAnotherPage, removeText, showText } from "./module.js";
 
+//스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
 if (localStorage.getItem("userName")) {
   goToAnotherPage("../sub/test");
 }
@@ -13,7 +14,7 @@ const emailErr = document.getElementById("signIn-email-error");
 const passwordErr = document.getElementById("signIn-pw-error");
 const errorArray = [emailErr, passwordErr];
 
-const resetError = () => {
+const resetErrorMsg = () => {
   errorArray.forEach((el) => {
     removeText(el);
   });
@@ -27,17 +28,28 @@ infoArray.forEach((info, i) => {
 
 document.getElementById("signIn-button").addEventListener("click", (event) => {
   event.preventDefault();
-  resetError();
+  resetErrorMsg();
   const email = emailEl.value;
   const password = passwordEl.value;
+  validationCheck(email, password) ? loginFunc(email, password, successLogin, failLogin) : null;
+});
+
+// document.getElementById("google-login-btn").addEventListener("click", (event) => {
+//   {
+//     event.preventDefault();
+//     loginWithGoogle();
+//   }
+// });
+
+const validationCheck = (email, password) => {
   let isAuth = true;
 
-  if (!authFunc.emailCheck(email)) {
+  if (!validationChecker.emailCheck(email)) {
     showText(emailErr, "유효하지 않은 이메일입니다.");
     isAuth = false;
   }
 
-  if (authFunc.isBlankText(email)) {
+  if (validationChecker.isBlankText(email)) {
     showText(emailErr, "이메일를 입력하세요.");
     isAuth = false;
   }
@@ -47,20 +59,12 @@ document.getElementById("signIn-button").addEventListener("click", (event) => {
     isAuth = false;
   }
 
-  if (authFunc.isBlankText(password)) {
+  if (validationChecker.isBlankText(password)) {
     showText(passwordErr, "비밀번호를 입력하세요.");
     isAuth = false;
   }
-
-  isAuth ? loginFunc(email, password, successLogin, failLogin) : null;
-});
-
-// document.getElementById("google-login-btn").addEventListener("click", (event) => {
-//   {
-//     event.preventDefault();
-//     loginWithGoogle();
-//   }
-// });
+  return isAuth;
+};
 
 const successLogin = () => {
   console.log("로그인 하셨습니다");

@@ -1,6 +1,7 @@
 import { loginFunc, signUpFun } from "./firebase.js";
-import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
+import { validationChecker, goToAnotherPage, removeText, showText } from "./module.js";
 
+//스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
 if (localStorage.getItem("userName")) {
   goToAnotherPage("../sub/test");
 }
@@ -33,17 +34,20 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
   const name = nameEl.value;
   const email = emailEl.value;
   const password = passwordEl.value;
+  validationCheck(name, email, password) ? signUpFun(email, password, name, successSignup, errorSignup) : null;
+});
 
+const validationCheck = (name, email, password) => {
   let isAuth = true;
-  if (authFunc.isBlankText(name)) {
+  if (validationChecker.isBlankText(name)) {
     showText(nameErr, "이름을 입력하세요");
     isAuth = false;
   }
-  if (!authFunc.emailCheck(email)) {
+  if (!validationChecker.emailCheck(email)) {
     showText(emailErr, "유효하지 않은 이메일입니다.");
     isAuth = false;
   }
-  if (authFunc.isBlankText(email)) {
+  if (validationChecker.isBlankText(email)) {
     showText(emailErr, "이메일을 입력하세요");
     isAuth = false;
   }
@@ -53,18 +57,15 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
     isAuth = false;
   }
 
-  if (authFunc.isBlankText(password)) {
+  if (validationChecker.isBlankText(password)) {
     showText(passwordErr, "패스워드를 입력하세요");
     isAuth = false;
   }
 
-  isAuth ? signUpFun(email, password, name, successSignup, errorSignup) : null;
-});
+  return isAuth;
+};
 
 const successSignup = () => {
-  const result = document.getElementById("signUp-result");
-  //result.style.display = "block";
-  //result.innerHTML = "회원가입에 성공했습니다";
   loginFunc(
     emailEl.value,
     passwordEl.value,
@@ -76,7 +77,5 @@ const successSignup = () => {
 };
 
 const errorSignup = () => {
-  const result = document.getElementById("signUp-result");
-  //result.style.display = "block";
-  //result.innerHTML = "회원가입에 실패했습니다";
+  console.log("회원가입에 실패하셨습니다.");
 };

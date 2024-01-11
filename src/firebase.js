@@ -10,6 +10,7 @@ import {
   signInWithRedirect,
   getRedirectResult
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { setLocalStorage } from "./module.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -40,14 +41,12 @@ export const udpateUserProfile = (name, photo) => {
       console.log("error");
     });
 };
-export const signUpFun = (email, password, name, success, error) => {
+export const signUpFun = (email, password, name, success, fail) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       console.log("성공");
-      const user = userCredential.user;
-      console.log("userInfo", user);
-      console.log(imgSrc);
+      // const user = userCredential.user;
       updateProfile(auth.currentUser, { displayName: name, photoURL: imgSrc }).then(() => {
         success();
       });
@@ -55,10 +54,8 @@ export const signUpFun = (email, password, name, success, error) => {
       // ...
     })
     .catch((error) => {
-      console.log("error");
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      error();
+      console.log(error.message);
+      fail();
       // ...
     });
 };
@@ -69,8 +66,8 @@ export const loginFunc = (email, password, success, fail) => {
       // Signed in
       const user = userCredential.user;
       console.log(user);
-      localStorage.setItem("userName", user.displayName);
-      localStorage.setItem("userPhoto", user.photoURL);
+      setLocalStorage("userName", user.displayName);
+      setLocalStorage("userPhoto", user.photoURL);
       success();
       // callback();
 

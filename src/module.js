@@ -15,7 +15,19 @@ export const removeText = (el) => {
   el.style.display = "none";
 };
 
-class AuthFunc {
+export const setLocalStorage = (att, val) => {
+  localStorage.setItem(att, val);
+};
+
+export const getLocalStorage = (att) => {
+  return localStorage.getItem(att);
+};
+
+export const removeLocalStorage = (att) => {
+  localStorage.removeItem(att);
+};
+
+class ValidationChecker {
   isBlankText = (text) => {
     if (!text) {
       return true;
@@ -33,4 +45,4 @@ class AuthFunc {
   };
 }
 
-export const authFunc = new AuthFunc();
+export const validationChecker = new ValidationChecker();
