@@ -4,15 +4,6 @@ html {
   font-size: 10px;
 }
 
-html * {
-  font-size: 2rem;
-}
-
-h1 {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 20px;
-}
 body {
   height: 100%;
   margin: 0;
@@ -24,14 +15,17 @@ body {
 }
 
 body * {
-  color: #fff !important;
+  /* color: rgb(18, 148, 243); */
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
 }
-
 input {
   background-color: initial;
   width: 100%;
   height: 50px;
   border: transparent;
+  text-align: left;
 }
 
 input:-webkit-autofill,
@@ -41,10 +35,47 @@ input:-webkit-autofill:active {
   background-color: transparent !important;
 }
 
-.defaultInput {
+h1 {
+  font-size: 3rem;
+}
+.mainHolder {
+  max-width: 460px;
+  min-width: 290px;
+  width: auto;
+  margin: 0 auto;
+  border-radius: 7px;
   width: 100%;
-  display: block;
-  flex: 3;
+}
+.userImgWrap {
+  width: 200px;
+  height: 200px;
+  border-radius: 300px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.userImg {
+  width: 100%;
+  height: 100%;
+}
+#inputImage {
+  display: none;
+}
+label {
+  position: absolute;
+  left: 0;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  /* background-color: blue; */
+  cursor: pointer;
+}
+input::file-selector-button {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  left: 0;
 }
 
 .inputWrap {
@@ -56,66 +87,34 @@ input:-webkit-autofill:active {
   box-sizing: border-box;
   border-radius: 5px;
 }
-
 .inputLabel {
   flex: 1;
   display: flex;
   align-items: center;
 }
-/* #signOut {
+.defaultInput {
   width: 100%;
-  background-color: black;
-  border: 1px solid #fff;
-  height: 50px;
-} */
-
-.mainHolder {
-  max-width: 460px;
-  min-width: 290px;
-  width: auto;
-  margin: 0 auto;
-  border-radius: 7px;
-  width: 100%;
+  display: block;
+  flex: 3;
+  text-align: left;
 }
-.moveAnotherPage {
+
+#signOut {
   background-color: transparent;
+  border: 0;
   width: 100%;
-  border: 1px solid #fff;
   height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin-top: 40px;
-  text-decoration-line: none;
-  cursor: pointer;
+  border: 1px solid #fff;
+  margin-top: 20px;
   border-radius: 5px;
+  cursor: pointer;
 }
-#signUp-button {
+#confirm {
   background-color: rgb(18, 148, 243);
-  margin-top: 20px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-#signIn-button {
-  cursor: pointer;
-  margin-top: 20px;
   width: 100%;
-  background-color: rgb(18, 148, 243);
+  height: 50px;
+  border: none;
+  margin-top: 20px;
   border-radius: 5px;
-}
-
-.errorText {
-  margin-top: 10px;
-  display: none;
-  color: #c30010 !important;
-}
-
-#signUp-result {
-  display: none;
-}
-
-#google-login-btn {
-  color: #000 !important;
+  cursor: pointer;
 }

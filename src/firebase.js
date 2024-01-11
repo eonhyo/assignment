@@ -4,7 +4,11 @@ import {
   getAuth,
   updateProfile,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -24,9 +28,18 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-console.log("hello world");
+
 const imgSrc = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${Math.floor(Math.random() * 100)}`;
 
+export const udpateUserProfile = (name, photo) => {
+  updateProfile(auth.currentUser, { displayName: name, photoURL: photo })
+    .then(() => {
+      console.log("프로필 업데이트 성공");
+    })
+    .catch((error) => {
+      console.log("error");
+    });
+};
 export const signUpFun = (email, password, name, success, error) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -65,11 +78,35 @@ export const loginFunc = (email, password, success, fail) => {
       // ...
     })
     .catch((error) => {
-      fail();
+      if (fail) {
+        fail();
+      }
       const errorCode = error.code;
       const errorMessage = error.message;
       alert(errorCode, errorMessage);
     });
+};
+
+export const loginWithGoogle = async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    await new signInWithRedirect(auth, provider);
+    const result = await getRedirectResult(authService);
+    if (result) {
+      console.log(result);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const loginWithGithub = async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    await new signInWithPopup(auth, provider);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const signOutFunc = (callback) => {

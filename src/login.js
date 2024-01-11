@@ -1,4 +1,4 @@
-import { loginFunc } from "./firebase.js";
+import { loginFunc, loginWithGoogle } from "./firebase.js";
 import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
 
 if (localStorage.getItem("userName")) {
@@ -54,6 +54,13 @@ document.getElementById("signIn-button").addEventListener("click", (event) => {
 
   isAuth ? loginFunc(email, password, successLogin, failLogin) : null;
 });
+
+// document.getElementById("google-login-btn").addEventListener("click", (event) => {
+//   {
+//     event.preventDefault();
+//     loginWithGoogle();
+//   }
+// });
 
 const successLogin = () => {
   console.log("로그인 하셨습니다");
