@@ -22,6 +22,11 @@ body {
   align-items: center;
   background-color: black;
 }
+
+body * {
+  color: #fff !important;
+}
+
 input {
   background-color: initial;
   width: 100%;
@@ -63,10 +68,6 @@ input:-webkit-autofill:active {
   height: 50px;
 } */
 
-body * {
-  color: #fff !important;
-}
-
 .mainHolder {
   max-width: 460px;
   min-width: 290px;
@@ -75,7 +76,7 @@ body * {
   border-radius: 7px;
   width: 100%;
 }
-.move-signup-btn {
+.moveAnotherPage {
   background-color: transparent;
   width: 100%;
   border: 1px solid #fff;
@@ -84,14 +85,18 @@ body * {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 40px;
+  text-decoration-line: none;
+  cursor: pointer;
 }
 #signUp-button {
   background-color: rgb(18, 148, 243);
   margin-top: 20px;
+  cursor: pointer;
 }
 
 #signIn-button {
+  cursor: pointer;
   margin-top: 20px;
   width: 100%;
   background-color: rgb(18, 148, 243);
