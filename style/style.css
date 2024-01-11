@@ -16,7 +16,7 @@ body {
 }
 
 .logo {
-  width: 60px;
+  width: 130px;
   height: 30px;
 }
 
@@ -52,13 +52,16 @@ body {
   border: 50px;
   border-radius: 10px;
   outline: none;
-  background-color: #164863;
+  /* background-color: #164863; */
   font-size: 1rem;
   color: white;
+  background-color: transparent;
+  border: 1px solid #02a7f7;
 }
 
 .input::placeholder {
-  color: #427d9d;
+  /* color: #427d9d; */
+  color: white;
 }
 
 .video {

@@ -41,10 +41,19 @@ const showMovies = (data) => {
 
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("movie-info");
-    movieInfo.innerHTML = `<h3>${title}</h3><span class="green">${vote_average}</span>`;
+    movieInfo.innerHTML = `<div class ="movieSimplyInfo">
+    <div class= "sprtaFlix"><span class="sparta">스파르타</span><span> 플릭스</span> </div>
+    <div class= "movieTitle"><h3>${title}</h3></div>
+    <div class="movieRating">
+    <div class="star"><i class="fa-solid fa-star"></i><span>${vote_average}</span>
+    </div>        
+      </div>
+    </div>`;
     slideItem.appendChild(movieInfo);
 
     sliderContainer.appendChild(slideItem);
+
+    lucide.createIcons();
   });
 
   slideItems = document.querySelectorAll(".slide-item");

@@ -4,141 +4,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Do+Hyeon&family=Nanum+Pen+Script&family=Roboto+Slab:wght@500&display=swap"
       rel="stylesheet"
     />    
+    
     <script type="module" src="./src/main.js"></script>
     <script type="module" src="./src/movie.js"></script>
+    
+<script
+src="https://kit.fontawesome.com/1f700c87c6.js"
+crossorigin="anonymous"
+></script>
+
+<script
+src="https://kit.fontawesome.com/1f700c87c6.js"
+crossorigin="anonymous"
+></script>
     <title>search MOVIE</title>
   </head>
 
-  <style>
-    .section1{
-      line-height: 1.15;
-      font-size: 1rem;
-    --toastify-color-light: #fff;
-    --toastify-color-dark: #121212;
-    --toastify-color-info: #3498db;
-    --toastify-color-success: #07bc0c;  
-    --toastify-color-warning: #f1c40f;
-    --toastify-color-error: #e74c3c;
-    --toastify-color-transparent: hsla(0,0%,100%,.7);
-    --toastify-icon-color-info: var(--toastify-color-info);
-    --toastify-icon-color-success: var(--toastify-color-success);
-    --toastify-icon-color-warning: var(--toastify-color-warning);
-    --toastify-icon-color-error: var(--toastify-color-error);
-    --toastify-toast-width: 320px;
-    --toastify-toast-background: #fff;
-    --toastify-toast-min-height: 64px;
-    --toastify-toast-max-height: 800px;
-    --toastify-font-family: sans-serif;
-    --toastify-z-index: 9999;
-    --toastify-text-color-light: #757575;
-    --toastify-text-color-dark: #fff;
-    --toastify-text-color-info: #fff;
-    --toastify-text-color-success: #fff;
-    --toastify-text-color-warning: #fff;
-    --toastify-text-color-error: #fff;
-    --toastify-spinner-color: #616161;
-    --toastify-spinner-color-empty-area: #e0e0e0;
-    --toastify-color-progress-light: linear-gradient(90deg,#4cd964,#5ac8fa,#007aff,#34aadc,#5856d6,#ff2d55);
-    --toastify-color-progress-dark: #bb86fc;
-    --toastify-color-progress-info: var(--toastify-color-info);
-    --toastify-color-progress-success: var(--toastify-color-success);
-    --toastify-color-progress-warning: var(--toastify-color-warning);
-    --toastify-color-progress-error: var(--toastify-color-error);
-    color: #fff;
-    box-sizing: border-box;
-    outline-width: 0;
-    display: flex;
-    height: 62px;
-    justify-content: space-between;
-    margin: 0 auto;
-    padding: 0 36px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    z-index: 5;
-    background: linear-gradient(180deg,#000,transparent);
-    }
-
-    .outer {
-      margin: 10px 10% 10px 10%;
-  overflow-x: hidden;
-}
-    .slider-container {
-    
-      transition: transform .6s ease-in-out;
-    display: flex;
-    width: 100%;   
-  }
-  .slide-item {
-
-    flex : 0 0 auto;
-    width: 100%;
-    height: 100px;
-  }
-  .slide-item img{
-    float: right;
-    width: 50%;
-    height: 100%;  
-    margin-right: 10px;
-  }
-
-
-  </style>
+ 
   <body>
     <!--header-->
-    <header>
-      <div class="navbar">
-        <div>
-          <img src="assets/main/1. 로고.png" class="logo" />
-          <a class="text">PROJECT.1</a>
-        </div>
-        <div class="title">
-          <h1>SPARTA MOVIE</h1>
-        </div>
-        <div>
-          <img src="assets/main/2. 아이콘.png" class="logo2" />
-        </div>
-      </div>
-    </header>
+   
 
     
     <!--search-->
     <nav>     
         <div class="section1" id="form">
-            <img src="assets/main/1. 로고.png" class="logo" />
+            <a href="./임시.html"><img src="assets/main/logo_sparta_play.png" class="logo" /></a>
+            <div class = "openFeedNavbar">
+              <div title="인기순 정렬">
+                <button id="sortByRating"><i data-lucide="bar-chart"></i></button>
+              </div>
+              <div title="이름순 정렬">
+                <button id="sortByName"><i data-lucide="arrow-down-a-z"></i></button>
+              </div>
             <form id="searchForm">
           <input id="search" class="input" type="text" placeholder="검색" autofocus />
         </form>
-          <button>로그인</button>
-          
+       
+        <button class = "join">가입하기</button>
+        <button class = "login">로그인</button>
+        
+        </div>
         </div>
       </nav>
     <div class = "outer">
       <div class="slider-container">   
       </div>
-    
-      <button id="prevBtn">이전</button>
-      <button id="nextBtn">다음</button>
+     
+      <button id="prevBtn"><i data-lucide="chevron-left"></i></button>
+      <button id="nextBtn"><i data-lucide="chevron-right"></i></button>
+   
     </div>
       <!--movie list-->
 
-     <div class ="hot">
+     <!-- <div class ="hotRating" tltle = "인기순 정렬">
           <button id="sortByRating">인기순 정렬</button>
-
         </div>
-        <div class ="naming">
-          <button id="sortByName">이름순 정렬</button>
-        </div>
+        <div class ="naming" title="이름순 정렬">
+          <button id="sortByName"><i data-lucide="arrow-down-a-z"></i></button>
+        </div> -->
+        <span class="movieList"><h2>영화 리스트</h2></span>
       <main id="main">
-   
-        <div class="movie">
+        <div class="movie">   
+          
           <img class="card" src="" alt="Image" />
           <div class="movieinfo">
             <h3>Movie Title</h3>
@@ -153,6 +88,13 @@
     </nav>
 
   
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+ 
+
+<script
+src="https://kit.fontawesome.com/1f700c87c6.js"
+crossorigin="anonymous"
+></script>
   </body>
 </html>
 
