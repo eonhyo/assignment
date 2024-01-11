@@ -1,6 +1,10 @@
 import { loginFunc, signUpFun } from "./firebase.js";
 import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
 
+if (localStorage.getItem("userName")) {
+  goToAnotherPage("../sub/test");
+}
+
 const nameErr = document.getElementById("name-error");
 const emailErr = document.getElementById("email-error");
 const passwordErr = document.getElementById("pw-error");

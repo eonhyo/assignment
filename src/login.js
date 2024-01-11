@@ -2,7 +2,7 @@ import { loginFunc } from "./firebase.js";
 import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
 
 if (localStorage.getItem("userName")) {
-  //goToAnotherPage("../sub/test");
+  goToAnotherPage("../sub/test");
 }
 
 const emailEl = document.getElementById("signIn-email");
@@ -55,16 +55,11 @@ document.getElementById("signIn-button").addEventListener("click", (event) => {
   isAuth ? loginFunc(email, password, successLogin, failLogin) : null;
 });
 
-// document.getElementById("signOut").addEventListener("click", (event) => {
-//   signOutFunc(signOut);
-// });
-
 const successLogin = () => {
-  console.log("signIn 하셨습니다.");
+  console.log("로그인 하셨습니다");
   goToAnotherPage("../sub/test");
 };
 
 const failLogin = () => {
   console.log("로그인에 실패 하셨습니다.");
-  showText(passwordErr, "유효하지 않은 아이디입니다");
 };

@@ -7,6 +7,7 @@ signOut.addEventListener("click", () => {
   signOutFunc(goToAnotherPage("../sub/login"));
   if (localStorage.getItem("userName")) {
     localStorage.removeItem("userName");
+    localStorage.removeItem("userPhoto");
   }
 });
 
