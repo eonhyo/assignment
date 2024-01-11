@@ -50,13 +50,24 @@ const showMovies = (data) => {
   });
 };
 
-form.addEventListener("submit", (e) => {
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   const searchTerm = search.value;
+//   if (searchTerm) {
+//     getMovies(searchURL + "&query=" + searchTerm);
+//   }
+//   if (!searchTerm) {
+//     alert("검색어를 입력하세요.");
+//   }
+// });
+
+document.getElementById("searchForm").addEventListener("submit", (e) => {
   e.preventDefault();
-  const searchTerm = search.value;
+  const searchTerm = document.getElementById("search").value;
   if (searchTerm) {
     getMovies(searchURL + "&query=" + searchTerm);
-  }
-  if (!searchTerm) {
+  } else {
     alert("검색어를 입력하세요.");
+    window.location.reload();
   }
 });

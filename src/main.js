@@ -28,8 +28,7 @@ let slideItems;
 let currentSlide = 0;
 
 const showMovies = (data) => {
-  const clonedMovies = [];
-  clonedMovies.splice(0, 0, ...data);
+  const clonedMovies = [...data];
 
   clonedMovies.slice(0, 6).forEach((movie) => {
     const { poster_path, title, vote_average } = movie;
@@ -71,3 +70,51 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 prevBtn.addEventListener("click", prevSlide);
 nextBtn.addEventListener("click", nextSlide);
+
+// 인기순, 이름순 정렬
+const sortByRatingBtn = document.getElementById("sortByRating");
+const sortByNameBtn = document.getElementById("sortByName");
+
+sortByRatingBtn.addEventListener("click", () => {
+  sortMoviesByRating();
+});
+
+sortByNameBtn.addEventListener("click", () => {
+  sortMoviesByName();
+});
+
+function sortMoviesByRating() {
+  const moviesContainer = document.getElementById("main");
+  const movies = Array.from(moviesContainer.children);
+
+  const sortedMovies = movies
+    .map((movie) => ({
+      element: movie,
+      rating: Number(movie.querySelector(".green").textContent)
+    }))
+    .sort((a, b) => b.rating - a.rating)
+    .map((movie) => movie.element);
+
+  moviesContainer.innerHTML = "";
+  sortedMovies.forEach((movie) => {
+    moviesContainer.appendChild(movie);
+  });
+}
+
+function sortMoviesByName() {
+  const moviesContainer = document.getElementById("main");
+  const movies = Array.from(moviesContainer.children);
+
+  const sortedMovies = movies
+    .map((movie) => ({
+      element: movie,
+      title: movie.querySelector(".movieinfo h3").textContent
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title))
+    .map((movie) => movie.element);
+
+  moviesContainer.innerHTML = "";
+  sortedMovies.forEach((movie) => {
+    moviesContainer.appendChild(movie);
+  });
+}

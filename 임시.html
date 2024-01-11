@@ -9,10 +9,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Do+Hyeon&family=Nanum+Pen+Script&family=Roboto+Slab:wght@500&display=swap"
       rel="stylesheet"
-    />
-    
-
-
+    />    
     <script type="module" src="./src/main.js"></script>
     <script type="module" src="./src/movie.js"></script>
     <title>search MOVIE</title>
@@ -114,12 +111,14 @@
     
     <!--search-->
     <nav>     
-        <form class="section1" id="form">
+        <div class="section1" id="form">
             <img src="assets/main/1. 로고.png" class="logo" />
+            <form id="searchForm">
           <input id="search" class="input" type="text" placeholder="검색" autofocus />
+        </form>
           <button>로그인</button>
           
-        </form>
+        </div>
       </nav>
     <div class = "outer">
       <div class="slider-container">   
@@ -129,7 +128,16 @@
       <button id="nextBtn">다음</button>
     </div>
       <!--movie list-->
+
+     <div class ="hot">
+          <button id="sortByRating">인기순 정렬</button>
+
+        </div>
+        <div class ="naming">
+          <button id="sortByName">이름순 정렬</button>
+        </div>
       <main id="main">
+   
         <div class="movie">
           <img class="card" src="" alt="Image" />
           <div class="movieinfo">
