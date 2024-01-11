@@ -68,6 +68,7 @@ export const loginFunc = (email, password, success, fail) => {
       fail();
       const errorCode = error.code;
       const errorMessage = error.message;
+      alert(errorCode, errorMessage);
     });
 };
 

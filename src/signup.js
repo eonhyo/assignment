@@ -1,4 +1,4 @@
-import { signUpFun } from "./firebase.js";
+import { loginFunc, signUpFun } from "./firebase.js";
 import { authFunc, goToAnotherPage, removeText, showText } from "./module.js";
 
 const nameErr = document.getElementById("name-error");
@@ -61,7 +61,14 @@ const successSignup = () => {
   const result = document.getElementById("signUp-result");
   //result.style.display = "block";
   //result.innerHTML = "회원가입에 성공했습니다";
-  goToAnotherPage("../sub/test");
+  loginFunc(
+    emailEl.value,
+    passwordEl.value,
+    () => {
+      goToAnotherPage("../sub/test");
+    },
+    console.log("로그인에 실패하셨습니다.")
+  );
 };
 
 const errorSignup = () => {

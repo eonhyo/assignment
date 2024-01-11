@@ -54,6 +54,7 @@ input:-webkit-autofill:active {
   border: 1px solid #fff;
   padding: 10px;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 .inputLabel {
@@ -88,11 +89,13 @@ input:-webkit-autofill:active {
   margin-top: 40px;
   text-decoration-line: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 #signUp-button {
   background-color: rgb(18, 148, 243);
   margin-top: 20px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 #signIn-button {
@@ -100,12 +103,13 @@ input:-webkit-autofill:active {
   margin-top: 20px;
   width: 100%;
   background-color: rgb(18, 148, 243);
+  border-radius: 5px;
 }
 
 .errorText {
   margin-top: 10px;
   display: none;
-  color: red;
+  color: #c30010 !important;
 }
 
 #signUp-result {

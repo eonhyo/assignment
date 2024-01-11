@@ -66,4 +66,5 @@ const successLogin = () => {
 
 const failLogin = () => {
   console.log("로그인에 실패 하셨습니다.");
+  showText(passwordErr, "유효하지 않은 아이디입니다");
 };
