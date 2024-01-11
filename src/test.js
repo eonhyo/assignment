@@ -1,4 +1,4 @@
-import { signOutFunc, udpateUserProfile } from "./firebase.js";
+import { signOutFunc, updateUserName, uploadProfileImg } from "./firebase.js";
 import { getLocalStorage, goToAnotherPage, removeLocalStorage, setLocalStorage } from "./module.js";
 
 const signOut = document.getElementById("signOut");
@@ -23,24 +23,26 @@ if (getLocalStorage("userName")) {
 
 //사진 업로드 기능 구현중
 document.querySelector("#inputImage").addEventListener("change", (e) => {
-  let selectFile = e.target.files;
-  if (selectFile.length > 0) {
-    const [imageFile] = selectFile;
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      const srcData = fileReader.result;
-      document.querySelector(".userImg").src = srcData;
-      setLocalStorage("userPhoto", srcData);
-    };
-    fileReader.readAsDataURL(imageFile);
-  }
+  const file = e.target.files[0];
+
+  uploadProfileImg(file);
+
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    document.querySelector(".userImg").src = e.target.result;
+  };
+
+  reader.readAsDataURL(file);
 });
 
 //확인버튼 누르면 파이어베이스 유저 프로필 업데이트
 document.getElementById("confirm").addEventListener("click", () => {
   const userName = document.querySelector("#name").value;
-  const userImg = document.querySelector(".userImg").src;
-  udpateUserProfile(userName, userImg);
+  const photoFile = document.querySelector("#inputImage").files[0];
+  uploadProfileImg(photoFile);
+  updateUserName(userName, userImg);
+
   setLocalStorage("userName", userName);
-  setLocalStorage("userPhoto", userImg);
+  //setLocalStorage("userPhoto", photoFile);
 });

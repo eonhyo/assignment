@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
   updateProfile,
@@ -8,9 +8,16 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signInWithRedirect,
-  getRedirectResult
+  getRedirectResult,
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { setLocalStorage } from "./module.js";
+import { goToAnotherPage, setLocalStorage } from "./module.js";
+import {
+  getStorage,
+  uploadBytes,
+  ref,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,11 +36,45 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+console.log("auth", auth);
+const authStateSubscription = onAuthStateChanged(auth, (user) => {
+  if (window.location.href.includes("/sub/test")) {
+    return;
+  }
+  if (user) {
+    // 사용자가 로그인한 경우
+    console.log("사용자가 로그인함:", user.uid);
+    goToAnotherPage("../sub/test");
+  } else {
+    // 사용자가 로그아웃한 경우
+    console.log("사용자가 로그아웃함");
+  }
+});
 
+export const uploadProfileImg = async (file) => {
+  const storage = getStorage(app);
+  const storageRef = ref(storage, "profilePictures/" + auth.currentUser.uid);
+  try {
+    const snapshot = await uploadBytes(storageRef, file);
+    // 업로드 완료 후 파일의 다운로드 URL 가져오기
+    const downloadURL = await getDownloadURL(snapshot.ref);
+    // 사용자 프로필 업데이트
+    try {
+      await updateProfile(auth.currentUser, {
+        photoURL: downloadURL
+      });
+      console.log("User profile updated successfully");
+    } catch (updateError) {
+      console.error("Error updating user profile: ", updateError);
+    }
+  } catch (error) {
+    console.error("Error uploading profile picture: ", error);
+  }
+};
 const imgSrc = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${Math.floor(Math.random() * 100)}`;
 
-export const udpateUserProfile = (name, photo) => {
-  updateProfile(auth.currentUser, { displayName: name, photoURL: photo })
+export const updateUserName = (name) => {
+  updateProfile(auth.currentUser, { displayName: name })
     .then(() => {
       console.log("프로필 업데이트 성공");
     })
@@ -41,6 +82,7 @@ export const udpateUserProfile = (name, photo) => {
       console.log("error");
     });
 };
+
 export const signUpFun = (email, password, name, success, fail) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -87,13 +129,20 @@ export const loginFunc = (email, password, success, fail) => {
 export const loginWithGoogle = async () => {
   try {
     const provider = new GoogleAuthProvider();
-    await new signInWithRedirect(auth, provider);
-    const result = await getRedirectResult(authService);
-    if (result) {
-      console.log(result);
+
+    // Google 로그인 페이지로 리디렉션
+    await signInWithRedirect(auth, provider);
+
+    // 로그인 결과 얻기
+    const result = await getRedirectResult(auth);
+
+    if (result.user) {
+      console.log("Google 로그인 성공:", result.user);
+    } else {
+      console.log("Google 로그인 실패:", result);
     }
   } catch (error) {
-    console.log(error);
+    console.error("Google 로그인 오류:", error);
   }
 };
 

@@ -1,4 +1,4 @@
-import { loginFunc, loginWithGoogle } from "./firebase.js";
+import { loginFunc, loginWithGoogle, auth } from "./firebase.js";
 import { validationChecker, goToAnotherPage, removeText, showText } from "./module.js";
 
 //스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
@@ -34,12 +34,12 @@ document.getElementById("signIn-button").addEventListener("click", (event) => {
   validationCheck(email, password) ? loginFunc(email, password, successLogin, failLogin) : null;
 });
 
-// document.getElementById("google-login-btn").addEventListener("click", (event) => {
-//   {
-//     event.preventDefault();
-//     loginWithGoogle();
-//   }
-// });
+document.getElementById("google-login-btn").addEventListener("click", (event) => {
+  {
+    event.preventDefault();
+    loginWithGoogle();
+  }
+});
 
 const validationCheck = (email, password) => {
   let isAuth = true;
