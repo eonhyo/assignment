@@ -10,7 +10,8 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Do+Hyeon&family=Nanum+Pen+Script&family=Roboto+Slab:wght@500&display=swap"
       rel="stylesheet"
-    />    
+    />   
+   
     
     <script type="module" src="./src/main.js"></script>
     <script type="module" src="./src/movie.js"></script>
@@ -36,7 +37,7 @@ crossorigin="anonymous"
     <!--search-->
     <nav>     
         <div class="section1" id="form">
-            <a href="./임시.html"><img src="assets/main/logo_sparta_play.png" class="logo" /></a>
+            <a href="/"><img src="assets/main/logo_sparta_play.png" class="logo" /></a>
             <div class = "openFeedNavbar">
               <div title="인기순 정렬">
                 <button id="sortByRating"><i data-lucide="bar-chart"></i></button>
@@ -47,10 +48,13 @@ crossorigin="anonymous"
             <form id="searchForm">
           <input id="search" class="input" type="text" placeholder="검색" autofocus />
         </form>
-       
-        <button class = "join">가입하기</button>
-        <button class = "login">로그인</button>
-        
+       <div class="joinWrap">
+        <a href="sub/signUp.html" class = "join">가입하기</a>
+        <a href="sub/login.html" class = "login">로그인</a>
+      </div>
+      <div class="profileSection">
+        <img class="profileImg" alt="profile_img" />
+      </div>
         </div>
         </div>
       </nav>

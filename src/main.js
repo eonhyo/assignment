@@ -1,8 +1,39 @@
+import { getLocalStorage, goToAnotherPage } from "./module.js";
+
 const API_KEY = "api_key=2f7ff395e001967bcd029e4d663de74c";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 const searchURL = BASE_URL + "/search/movie?" + API_KEY;
+
+//헤더 관련
+const joinSection = document.querySelector(".joinWrap");
+const profileSection = document.querySelector(".profileSection");
+
+const showProfilePic = () => {
+  profileSection.display = "flex";
+  joinSection.style.display = "none";
+  const profileImg = document.querySelector(".profileImg");
+  console.log(getLocalStorage("userPhoto"));
+  profileImg.src = getLocalStorage("userPhoto");
+};
+
+const showJoinBtn = () => {
+  joinSection.style.display = "flex";
+  profileSection.style.display = "none";
+};
+
+if (getLocalStorage("userName")) {
+  console.log("로그인상태임");
+  console.log(getLocalStorage("userName"));
+  showProfilePic();
+} else {
+  showJoinBtn();
+}
+
+profileSection.addEventListener("click", () => {
+  goToAnotherPage("../sub/test");
+});
 
 const main = document.getElementById("main");
 const form = document.getElementById("form");

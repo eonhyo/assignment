@@ -35,6 +35,15 @@ input:-webkit-autofill:active {
   background-color: transparent !important;
 }
 
+header {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+}
+header > a > img {
+  width: 130px;
+}
+
 h1 {
   font-size: 3rem;
 }
@@ -116,5 +125,44 @@ input::file-selector-button {
   border: none;
   margin-top: 20px;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 모달 */
+#myModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  opacity: 0.8;
+}
+#myModal > * {
+  color: #000;
+}
+
+/* 배경 오버레이 스타일 */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+#myModal .modalClose {
+  background-color: rgb(18, 148, 243);
+  border: 0;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 15px;
   cursor: pointer;
 }

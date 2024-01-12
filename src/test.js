@@ -1,4 +1,4 @@
-import { signOutFunc, updateUserName, uploadProfileImg } from "./firebase.js";
+import { signOutFunc, updateUserInfo, uploadProfileImg } from "./firebase.js";
 import { getLocalStorage, goToAnotherPage, removeLocalStorage, setLocalStorage } from "./module.js";
 
 const signOut = document.getElementById("signOut");
@@ -8,9 +8,10 @@ signOut.addEventListener("click", () => {
   if (getLocalStorage("userName")) {
     removeLocalStorage("userName");
     removeLocalStorage("userPhoto");
+    removeLocalStorage("login");
   }
 
-  signOutFunc(goToAnotherPage("../sub/login"));
+  signOutFunc(goToAnotherPage("/"));
 });
 
 //로그인해서 들어오면 로컬스토리지에 저장된 값 가져오기
@@ -40,9 +41,31 @@ document.querySelector("#inputImage").addEventListener("change", (e) => {
 document.getElementById("confirm").addEventListener("click", () => {
   const userName = document.querySelector("#name").value;
   const photoFile = document.querySelector("#inputImage").files[0];
+  updateUserInfo(userName);
   uploadProfileImg(photoFile);
-  updateUserName(userName, userImg);
-
   setLocalStorage("userName", userName);
-  //setLocalStorage("userPhoto", photoFile);
+  setLocalStorage("userPhoto", document.querySelector(".userImg").src);
+});
+
+//모달
+
+// 모달 열고 닫기 함수
+let modal = document.getElementById("myModal");
+let overlay = document.getElementById("overlay");
+const toggleModal = () => {
+  if (modal.style.display === "block") {
+    modal.style.display = "none";
+    overlay.style.display = "none";
+  } else {
+    modal.style.display = "block";
+    overlay.style.display = "block";
+  }
+};
+
+document.querySelector("#confirm").addEventListener("click", () => {
+  console.log("click");
+  toggleModal();
+});
+document.querySelector(".modalClose").addEventListener("click", () => {
+  toggleModal();
 });
