@@ -1,18 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import {
   getAuth,
   updateProfile,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
   GoogleAuthProvider,
   GithubAuthProvider,
   signInWithRedirect,
   getRedirectResult,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { goToAnotherPage, setLocalStorage } from "./module.js";
+import { goToAnotherPage } from "./module.js";
 import {
   getStorage,
   uploadBytes,
@@ -41,20 +40,7 @@ console.log("auth", auth);
 
 export { onAuthStateChanged };
 
-// const authStateSubscription = onAuthStateChanged(auth, (user) => {
-//   if (window.location.href.includes("/sub/test")) {
-//     return;
-//   }
-//   if (user) {
-//     // 사용자가 로그인한 경우
-//     console.log("사용자가 로그인함:", user.uid);
-//     Page("../sub/test");
-//   } else {
-//     // 사용자가 로그아웃한 경우
-//     console.log("사용자가 로그아웃함");
-//   }
-// });
-
+//프로필 이미지 업로드 로직
 export const uploadProfileImg = async (file) => {
   const storage = getStorage(app);
   const storageRef = ref(storage, "profilePictures/" + auth.currentUser.uid);
@@ -67,19 +53,19 @@ export const uploadProfileImg = async (file) => {
       await updateProfile(auth.currentUser, {
         photoURL: downloadURL
       });
-      console.log("User profile updated successfully");
-      return true;
+      console.log("유저 프로필 사진 업데이트 성공");
     } catch (updateError) {
-      console.error("Error updating user profile: ", updateError);
-      return false;
+      console.error("유저 프로필 사진 업데이트 실패 :", updateError);
     }
   } catch (error) {
-    console.error("Error uploading profile picture: ", error);
+    console.error("유저 프로필 사진 업데이트 실패 : ", error);
   }
-  return false;
 };
+
+//처음 가입했을 때 유저 프로필을 랜덤으로 지정
 const imgSrc = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${Math.floor(Math.random() * 100)}`;
 
+//유저 정보를 업데이트
 export const updateUserInfo = async (name, profile) => {
   try {
     if (profile) {
@@ -96,27 +82,32 @@ export const updateUserInfo = async (name, profile) => {
   }
 };
 
-export const signUpFun = async (email, password, name, success, fail) => {
+//회원가입 시 실행될 함수
+export const signUpFunc = async (email, password, name) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     updateUserInfo(name, imgSrc);
+    console.log("회원가입에 성공했습니다");
     return true;
   } catch (error) {
     console.log(error.message);
+    console.log("회원가입에 실패했습니다");
   }
 };
 
-export const loginFunc = async (email, password, success, fail) => {
+//로그인 시 실행될 함수
+export const loginFunc = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    setLocalStorage("userName", auth.currentUser.displayName);
-    setLocalStorage("userPhoto", auth.currentUser.photoURL);
     goToAnotherPage("/");
-    //success();
+    console.log("로그인 성공");
   } catch (error) {
-    console.log(error.message);
+    console.log("error");
+    alert("로그인에 실패했습니다.");
   }
 };
+
+//구글 로그인
 
 export const loginWithGoogle = async () => {
   try {

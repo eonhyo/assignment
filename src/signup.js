@@ -1,4 +1,4 @@
-import { loginFunc, loginWithGoogle, signUpFun, onAuthStateChanged, auth } from "./firebase.js";
+import { loginFunc, loginWithGoogle, signUpFunc, onAuthStateChanged, auth } from "./firebase.js";
 import {
   validationChecker,
   goToAnotherPage,
@@ -34,19 +34,12 @@ if (getLocalStorage("login") === "true") {
 }
 
 onAuthStateChanged(auth, (user) => {
-  // if (window.location.href.includes("/sub/test")) {
-  //   return;
-  // }
-
   if (user) {
     // 사용자가 로그인한 경우
     console.log("사용자가 로그인함:", user.uid);
-    setLocalStorage("userName", user.displayName);
-    setLocalStorage("userPhoto", user.photoURL);
-    console.log(user.photoURL);
     goToAnotherPage("/");
   } else {
-    console.log("사용자가 로그아웃함");
+    console.log("사용자 로그인 안 함");
     removeLoading();
   }
 });
@@ -61,18 +54,21 @@ const emailEl = document.getElementById("signUp-email");
 const passwordEl = document.getElementById("signUp-password");
 const infoArray = [nameEl, emailEl, passwordEl];
 
+//유효성 검사 에러 메세지 한번에 지우기
 const resetErrorMsg = () => {
   errorArray.forEach((el) => {
     removeText(el);
   });
 };
 
+//인풋에 뭔가 입력할 땐 에러가 안 뜨게
 infoArray.forEach((info, i) => {
   info.addEventListener("input", (e) => {
     e.target.value ? removeText(errorArray[i]) : "";
   });
 });
 
+//유효성 검사 로직
 const validationCheck = (name, email, password) => {
   let isAuth = true;
   if (validationChecker.isBlankText(name)) {
@@ -101,12 +97,6 @@ const validationCheck = (name, email, password) => {
   return isAuth;
 };
 
-const successSignup = () => {};
-
-const errorSignup = () => {
-  console.log("회원가입에 실패하셨습니다.");
-};
-
 document.getElementById("signUp-button").addEventListener("click", (event) => {
   event.preventDefault();
   resetErrorMsg();
@@ -114,11 +104,13 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
   const email = emailEl.value;
   const password = passwordEl.value;
 
+  //내부로직에 의한 유효성검사가 끝나면 회원가입 후 로그인한다.
   validationCheck(name, email, password)
-    ? signUpFun(email, password, name)
+    ? signUpFunc(email, password, name)
         .then((result) => {
-          console.log(result);
-          loginFunc(emailEl.value, passwordEl.value);
+          if (result) {
+            loginFunc(email, password);
+          }
         })
         .catch((error) => {
           console.log(error);
