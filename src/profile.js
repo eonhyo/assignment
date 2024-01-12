@@ -10,7 +10,7 @@ signOut.addEventListener("click", () => {
     removeLocalStorage("userPhoto");
     removeLocalStorage("login");
   }
-
+  //firebase에서 로그아웃한 후 메인페이지로 이동한다.
   signOutFunc(goToAnotherPage("/"));
 });
 
@@ -43,11 +43,10 @@ document.getElementById("confirm").addEventListener("click", () => {
   setLocalStorage("userPhoto", document.querySelector(".userImg").src);
 });
 
-//모달
+// 모달 관련 로직
 
-// 모달 열고 닫기 함수
-let modal = document.getElementById("myModal");
-let overlay = document.getElementById("overlay");
+const modal = document.getElementById("myModal");
+const overlay = document.getElementById("overlay");
 const toggleModal = () => {
   if (modal.style.display === "block") {
     modal.style.display = "none";
