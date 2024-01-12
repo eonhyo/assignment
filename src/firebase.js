@@ -48,7 +48,7 @@ export { onAuthStateChanged };
 //   if (user) {
 //     // 사용자가 로그인한 경우
 //     console.log("사용자가 로그인함:", user.uid);
-//     goToAnotherPage("../sub/test");
+//     Page("../sub/test");
 //   } else {
 //     // 사용자가 로그아웃한 경우
 //     console.log("사용자가 로그아웃함");
@@ -68,66 +68,54 @@ export const uploadProfileImg = async (file) => {
         photoURL: downloadURL
       });
       console.log("User profile updated successfully");
+      return true;
     } catch (updateError) {
       console.error("Error updating user profile: ", updateError);
+      return false;
     }
   } catch (error) {
     console.error("Error uploading profile picture: ", error);
   }
+  return false;
 };
 const imgSrc = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${Math.floor(Math.random() * 100)}`;
 
-export const updateUserName = (name) => {
-  updateProfile(auth.currentUser, { displayName: name })
-    .then(() => {
-      console.log("프로필 업데이트 성공");
-    })
-    .catch((error) => {
-      console.log("error");
-    });
+export const updateUserInfo = async (name, profile) => {
+  try {
+    if (profile) {
+      await updateProfile(auth.currentUser, { displayName: name, photoURL: profile });
+    } else {
+      await updateProfile(auth.currentUser, { displayName: name });
+    }
+
+    console.log("success");
+    return true;
+  } catch (error) {
+    console.log("error");
+    return false;
+  }
 };
 
-export const signUpFun = (email, password, name, success, fail) => {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      console.log("성공");
-      // const user = userCredential.user;
-      updateProfile(auth.currentUser, { displayName: name, photoURL: imgSrc }).then(() => {
-        success();
-      });
-
-      // ...
-    })
-    .catch((error) => {
-      console.log(error.message);
-      fail();
-      // ...
-    });
+export const signUpFun = async (email, password, name, success, fail) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    updateUserInfo(name, imgSrc);
+    return true;
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-export const loginFunc = (email, password, success, fail) => {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-      setLocalStorage("userName", user.displayName);
-      setLocalStorage("userPhoto", user.photoURL);
-      success();
-      // callback();
-
-      //goToAnotherPage("/");
-      // ...
-    })
-    .catch((error) => {
-      if (fail) {
-        fail();
-      }
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorCode, errorMessage);
-    });
+export const loginFunc = async (email, password, success, fail) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    setLocalStorage("userName", auth.currentUser.displayName);
+    setLocalStorage("userPhoto", auth.currentUser.photoURL);
+    goToAnotherPage("/");
+    //success();
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 export const loginWithGoogle = async () => {
@@ -166,14 +154,12 @@ export const loginWithGithub = async () => {
   }
 };
 
-export const signOutFunc = (callback) => {
-  auth
-    .signOut()
-    .then(() => {
-      callback();
-      console.log("로그아웃 성공");
-    })
-    .catch((error) => {
-      console.log("로그아웃 실패");
-    });
+export const signOutFunc = async (callback) => {
+  try {
+    await auth.signOut();
+    callback();
+    console.log("로그아웃 성공");
+  } catch (error) {
+    console.log("로그아웃 실패");
+  }
 };

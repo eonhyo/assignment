@@ -10,7 +10,8 @@ import {
 
 //스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
 if (getLocalStorage("userName")) {
-  goToAnotherPage("../sub/test");
+  console.log(getLocalStorage("userName"));
+  //goToAnotherPage("/");
 }
 
 const addLoading = () => {
@@ -43,7 +44,7 @@ onAuthStateChanged(auth, (user) => {
     setLocalStorage("userName", user.displayName);
     setLocalStorage("userPhoto", user.photoURL);
 
-    goToAnotherPage("/");
+    //goToAnotherPage("/");
   } else {
     console.log("사용자가 로그아웃함");
     removeLoading();
@@ -100,16 +101,7 @@ const validationCheck = (name, email, password) => {
   return isAuth;
 };
 
-const successSignup = () => {
-  loginFunc(
-    emailEl.value,
-    passwordEl.value,
-    () => {
-      goToAnotherPage("/");
-    },
-    console.log("로그인에 실패하셨습니다.")
-  );
-};
+const successSignup = () => {};
 
 const errorSignup = () => {
   console.log("회원가입에 실패하셨습니다.");
@@ -121,7 +113,17 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
   const name = nameEl.value;
   const email = emailEl.value;
   const password = passwordEl.value;
-  validationCheck(name, email, password) ? signUpFun(email, password, name, successSignup, errorSignup) : null;
+
+  validationCheck(name, email, password)
+    ? signUpFun(email, password, name)
+        .then((result) => {
+          console.log(result);
+          loginFunc(emailEl.value, passwordEl.value);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    : null;
 });
 
 document.getElementById("google-login-btn").addEventListener("click", (event) => {

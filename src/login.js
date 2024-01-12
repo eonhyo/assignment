@@ -46,8 +46,8 @@ onAuthStateChanged(auth, (user) => {
 });
 
 //스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
-if (localStorage.getItem("userName")) {
-  goToAnotherPage("/");
+if (localStorage.getItem("userName") !== "null") {
+  // goToAnotherPage("/");
 }
 
 const emailEl = document.getElementById("signIn-email");
@@ -97,7 +97,6 @@ const validationCheck = (email, password) => {
 
 const successLogin = () => {
   console.log("로그인 하셨습니다");
-  goToAnotherPage("../sub/test");
 };
 
 const failLogin = () => {
