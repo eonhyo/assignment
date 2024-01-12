@@ -209,6 +209,7 @@ a {
   height: 100%;
 }
 
+/* 로딩창 */
 .mask {
   position: fixed;
   top: 0;
