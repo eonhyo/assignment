@@ -1,4 +1,4 @@
-import { loginFunc, loginWithGoogle, signUpFun, onAuthStateChanged, auth } from "./firebase.js";
+import { loginFunc, loginWithGoogle, signUpFunc, onAuthStateChanged, auth } from "./firebase.js";
 import {
   validationChecker,
   goToAnotherPage,
@@ -34,16 +34,9 @@ if (getLocalStorage("login") === "true") {
 }
 
 onAuthStateChanged(auth, (user) => {
-  // if (window.location.href.includes("/sub/test")) {
-  //   return;
-  // }
-
   if (user) {
     // 사용자가 로그인한 경우
     console.log("사용자가 로그인함:", user.uid);
-    setLocalStorage("userName", user.displayName);
-    setLocalStorage("userPhoto", user.photoURL);
-    console.log(user.photoURL);
     goToAnotherPage("/");
   } else {
     console.log("사용자가 로그아웃함");
@@ -115,7 +108,7 @@ document.getElementById("signUp-button").addEventListener("click", (event) => {
   const password = passwordEl.value;
 
   validationCheck(name, email, password)
-    ? signUpFun(email, password, name)
+    ? signUpFunc(email, password, name)
         .then((result) => {
           console.log(result);
           loginFunc(emailEl.value, passwordEl.value);

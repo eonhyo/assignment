@@ -41,20 +41,6 @@ console.log("auth", auth);
 
 export { onAuthStateChanged };
 
-// const authStateSubscription = onAuthStateChanged(auth, (user) => {
-//   if (window.location.href.includes("/sub/test")) {
-//     return;
-//   }
-//   if (user) {
-//     // 사용자가 로그인한 경우
-//     console.log("사용자가 로그인함:", user.uid);
-//     Page("../sub/test");
-//   } else {
-//     // 사용자가 로그아웃한 경우
-//     console.log("사용자가 로그아웃함");
-//   }
-// });
-
 export const uploadProfileImg = async (file) => {
   const storage = getStorage(app);
   const storageRef = ref(storage, "profilePictures/" + auth.currentUser.uid);
@@ -96,7 +82,7 @@ export const updateUserInfo = async (name, profile) => {
   }
 };
 
-export const signUpFun = async (email, password, name, success, fail) => {
+export const signUpFunc = async (email, password, name, success, fail) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     updateUserInfo(name, imgSrc);
@@ -115,6 +101,7 @@ export const loginFunc = async (email, password, success, fail) => {
     //success();
   } catch (error) {
     console.log(error.message);
+    alert("유효하지 않은 아이디입니다");
   }
 };
 
