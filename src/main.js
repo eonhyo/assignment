@@ -1,4 +1,5 @@
-import { getLocalStorage, goToAnotherPage } from "./module.js";
+import { onAuthStateChanged, auth } from "./firebase.js";
+import { getLocalStorage, goToAnotherPage, setLocalStorage } from "./module.js";
 
 const API_KEY = "api_key=2f7ff395e001967bcd029e4d663de74c";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -13,9 +14,6 @@ const profileSection = document.querySelector(".profileSection");
 const showProfilePic = () => {
   profileSection.display = "flex";
   joinSection.style.display = "none";
-  const profileImg = document.querySelector(".profileImg");
-  console.log(getLocalStorage("userPhoto"));
-  profileImg.src = getLocalStorage("userPhoto");
 };
 
 const showJoinBtn = () => {
@@ -23,13 +21,21 @@ const showJoinBtn = () => {
   profileSection.style.display = "none";
 };
 
-if (getLocalStorage("userName")) {
-  console.log("로그인상태");
-  console.log(getLocalStorage("userName"));
-  showProfilePic();
-} else {
-  showJoinBtn();
-}
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // 사용자가 로그인한 경우
+    console.log("사용자가 로그인함:", user.uid);
+    setLocalStorage("userName", user.displayName);
+    setLocalStorage("userPhoto", user.photoURL);
+    const profileImg = document.querySelector(".profileImg");
+    console.log(user.photoURL);
+    profileImg.src = user.photoURL;
+    showProfilePic();
+  } else {
+    console.log("사용자가 로그아웃함");
+    showJoinBtn();
+  }
+});
 
 profileSection.addEventListener("click", () => {
   goToAnotherPage("../sub/profile");
