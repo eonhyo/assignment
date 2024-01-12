@@ -24,7 +24,7 @@ const showJoinBtn = () => {
 };
 
 if (getLocalStorage("userName")) {
-  console.log("로그인상태임");
+  console.log("로그인상태");
   console.log(getLocalStorage("userName"));
   showProfilePic();
 } else {
@@ -32,7 +32,7 @@ if (getLocalStorage("userName")) {
 }
 
 profileSection.addEventListener("click", () => {
-  goToAnotherPage("../sub/test");
+  goToAnotherPage("../sub/profile");
 });
 
 const main = document.getElementById("main");

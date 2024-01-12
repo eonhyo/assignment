@@ -28,27 +28,17 @@ if (getLocalStorage("login") === "true") {
 }
 
 onAuthStateChanged(auth, (user) => {
-  // if (window.location.href.includes("/sub/test")) {
-  //   return;
-  // }
-
   if (user) {
     // 사용자가 로그인한 경우
     console.log("사용자가 로그인함:", user.uid);
     setLocalStorage("userName", user.displayName);
     setLocalStorage("userPhoto", user.photoURL);
-
     goToAnotherPage("/");
   } else {
     console.log("사용자가 로그아웃함");
     removeLoading();
   }
 });
-
-//스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
-if (localStorage.getItem("userName") !== "null") {
-  // goToAnotherPage("/");
-}
 
 const emailEl = document.getElementById("signIn-email");
 const passwordEl = document.getElementById("signIn-password");

@@ -11,7 +11,7 @@ import {
 //스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
 if (getLocalStorage("userName")) {
   console.log(getLocalStorage("userName"));
-  //goToAnotherPage("/");
+  goToAnotherPage("/");
 }
 
 const addLoading = () => {
@@ -43,8 +43,7 @@ onAuthStateChanged(auth, (user) => {
     console.log("사용자가 로그인함:", user.uid);
     setLocalStorage("userName", user.displayName);
     setLocalStorage("userPhoto", user.photoURL);
-
-    //goToAnotherPage("/");
+    goToAnotherPage("/");
   } else {
     console.log("사용자가 로그아웃함");
     removeLoading();
