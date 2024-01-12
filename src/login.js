@@ -1,5 +1,24 @@
-import { loginFunc, loginWithGoogle, auth } from "./firebase.js";
-import { validationChecker, goToAnotherPage, removeText, showText } from "./module.js";
+import { loginFunc, loginWithGoogle, auth, onAuthStateChanged } from "./firebase.js";
+import { validationChecker, goToAnotherPage, removeText, showText, setLocalStorage } from "./module.js";
+
+onAuthStateChanged(auth, (user) => {
+  // if (window.location.href.includes("/sub/test")) {
+  //   return;
+  // }
+  if (user) {
+    // 사용자가 로그인한 경우
+    console.log("사용자가 로그인함:", user.uid);
+
+    console.log(user);
+    setLocalStorage("userName", user.displayName);
+    setLocalStorage("userPhoto", user.photoURL);
+
+    goToAnotherPage("../sub/test");
+  } else {
+    // 사용자가 로그아웃한 경우
+    console.log("사용자가 로그아웃함");
+  }
+});
 
 //스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
 if (localStorage.getItem("userName")) {

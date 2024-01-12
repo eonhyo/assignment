@@ -37,19 +37,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 console.log("auth", auth);
-const authStateSubscription = onAuthStateChanged(auth, (user) => {
-  if (window.location.href.includes("/sub/test")) {
-    return;
-  }
-  if (user) {
-    // 사용자가 로그인한 경우
-    console.log("사용자가 로그인함:", user.uid);
-    goToAnotherPage("../sub/test");
-  } else {
-    // 사용자가 로그아웃한 경우
-    console.log("사용자가 로그아웃함");
-  }
-});
+
+export { onAuthStateChanged };
+
+// const authStateSubscription = onAuthStateChanged(auth, (user) => {
+//   if (window.location.href.includes("/sub/test")) {
+//     return;
+//   }
+//   if (user) {
+//     // 사용자가 로그인한 경우
+//     console.log("사용자가 로그인함:", user.uid);
+//     goToAnotherPage("../sub/test");
+//   } else {
+//     // 사용자가 로그아웃한 경우
+//     console.log("사용자가 로그아웃함");
+//   }
+// });
 
 export const uploadProfileImg = async (file) => {
   const storage = getStorage(app);
