@@ -53,13 +53,12 @@ nav button {
 #info-section {
   margin: 20px 0;
   padding-right: 40px;
-  /* background-color: red; */
 }
 
 #info-section h1 {
   display: inline-block;
   font-size: 3cqmax;
-  margin-bottom: 10px;
+  padding: 10px 0 20px 0;
 }
 
 .releas-date {
@@ -69,67 +68,69 @@ nav button {
   color: #c1c1c1;
 }
 
-.film-box {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background-color: #000;
-  border-radius: 15px;
-  box-shadow: 3px 3px 30px 2px #02a5f7bc;
-  /* height: 32vh;
-  line-height: 32vh; */
-  text-align: center;
-}
-
-.film-box img {
-  /* vertical-align: middle; */
-  padding: 20px 30px;
-}
-
-.back-porster {
-  /* height: 26vh; */
-  /* border-radius: 30px; */
-}
-
-.film-bar {
-  /* height: 30vh; */
-}
-
-.info-box {
-  padding: 10px;
-}
-
 .vote-star {
-  padding-top: 10px;
+  padding-top: 30px;
+  float: right;
+  font-size: 2rem;
+  text-align: center;
 }
 
 .vote-star img {
   width: 30px;
 }
 
-.vote-star {
-  display: inline-block;
-  font-size: 2rem;
+.details-box {
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.film-box {
+  display: flex;
+  /* float: left; */
+  justify-content: space-between;
+  width: 60%;
+  background-color: #000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px 2px #02a5f7bc;
+  align-items: center;
+  padding: 0 15px;
+  margin-right: 35px;
+}
+
+.back-porster {
+  height: 25vh;
+  padding: 30px;
+}
+
+.film-bar {
+  height: 30vh;
+}
+
+.info-box {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.tag-line {
+  font-size: 1.5rem;
+  font-style: italic;
+  text-shadow: 3px 3px 10px #02a7f7;
+  padding-bottom: 25px;
 }
 
 .plot {
-  display: inline-block;
-  margin: 15px 0 0 20px;
-  width: 80%;
-  font-size: 15px;
+  font-size: 13px;
+  color: #9e9e9e;
+  padding-bottom: 20px;
+}
+
+.homepage-btn img {
+  /* float: right; */
+  height: 40px;
 }
 
 #review-box {
-  height: 30px;
-  border: 2px solid #02a7f7;
-}
-
-#link-box {
-  /* background-color: red; */
-  text-align: right;
-}
-
-#link-box img {
-  width: 8%;
-  padding-left: 20px;
+  height: 30vh;
+  border: 2px solid #02a5f783;
+  border-radius: 10px;
 }

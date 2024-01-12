@@ -26,7 +26,7 @@ const showMovies = (data) => {
   main.innerHTML = "";
 
   data.forEach((movie) => {
-    const { title, poster_path, vote_average, overview, backdrop_path, release_date } = movie;
+    const { title, poster_path, vote_average, overview, backdrop_path, release_date, id } = movie;
     const movierating = vote_average.toFixed(1);
     const movieEl = document.createElement("div");
     movieEl.classList.add("movie");
@@ -34,17 +34,7 @@ const showMovies = (data) => {
     const backPosterUrl = `${IMG_URL}${backdrop_path}`;
 
     movieEl.addEventListener("click", () => {
-      let movieData = [];
-      movieData.push({
-        title: title,
-        poster: posterUrl,
-        backPoster: backPosterUrl,
-        overview: overview,
-        voteAvaerage: vote_average,
-        releasDate: release_date
-      });
-      localStorage.setItem("movie", JSON.stringify(movieData));
-      window.location.href = "sub.html";
+      window.location.href = `sub.html?id=${id}`;
     });
 
     movieEl.innerHTML = `
