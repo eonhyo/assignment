@@ -5,7 +5,6 @@ const API_KEY = "api_key=2f7ff395e001967bcd029e4d663de74c";
 const BASE_URL = "https://api.themoviedb.org/3";
 const API_URL = BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
-const searchURL = BASE_URL + "/search/movie?" + API_KEY;
 
 //헤더 관련
 const joinSection = document.querySelector(".joinWrap");
@@ -41,11 +40,6 @@ profileSection.addEventListener("click", () => {
   goToAnotherPage("../sub/profile");
 });
 
-const main = document.getElementById("main");
-const form = document.getElementById("form");
-const search = document.getElementById("search");
-const id = document.getElementById("id");
-
 getMovies(API_URL);
 
 async function getMovies(url) {
@@ -74,17 +68,24 @@ const showMovies = (data) => {
 
     const image = new Image();
     image.src = `${IMG_URL + poster_path}`;
+
     slideItem.appendChild(image);
+
+    const slideImage = document.createElement("div");
+    slideImage.classList.add("slide-image");
+    slideItem.appendChild(slideImage);
 
     const movieInfo = document.createElement("div");
     movieInfo.classList.add("movie-info");
     movieInfo.innerHTML = `<div class ="movieSimplyInfo">
-    <div class= "sprtaFlix"><span class="sparta">스파르타</span><span> 플릭스</span> </div>
+    <div class="sliderMovie">
+    <div class= "sprtaSeries"><span class="sparta">스파르타</span><span> 시리즈</span> </div>
     <div class= "movieTitle"><h3>${title}</h3></div>
     <div class="movieRating">
     <div class="star"><i class="fa-solid fa-star"></i><span>${vote_average}</span>
     </div>        
       </div>
+    </div>
     </div>`;
     slideItem.appendChild(movieInfo);
 
