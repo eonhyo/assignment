@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/test.css" />
+    <script type="module" src="../src/test.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="mainHolder">
+      <h1>프로필 편집</h1>
+
+      <div class="userImgWrap">
+        <img class="userImg" id="userImg" src="" alt="avatar" />
+        <input type="file" id="inputImage" name="inputImage" />
+        <label for="inputImage"></label>
+      </div>
+
+      <div class="inputWrap">
+        <span class="inputLabel">이름</span
+        ><span class="defaultInput">
+          <input type="text" name="name" id="name" placeholder="Username" autocomplete="off"
+        /></span>
+      </div>
+
+      <div><button id="confirm">변경사항 적용</button></div>
+      <div><button id="signOut">로그아웃</button></div>
+    </main>
+  </body>
+</html>
