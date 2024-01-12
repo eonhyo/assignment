@@ -90,8 +90,9 @@ export const signUpFunc = async (email, password, name) => {
     console.log("회원가입에 성공했습니다");
     return true;
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     console.log("회원가입에 실패했습니다");
+    alert("회원가입에 실패했습니다.", error);
   }
 };
 
@@ -103,7 +104,7 @@ export const loginFunc = async (email, password) => {
     console.log("로그인 성공");
   } catch (error) {
     console.log("error");
-    alert("로그인에 실패했습니다.");
+    alert("로그인에 실패했습니다.", error);
   }
 };
 
@@ -129,6 +130,8 @@ export const loginWithGoogle = async () => {
   }
 };
 
+//깃헙 로그인 사용하지 않음
+
 export const loginWithGithub = async () => {
   try {
     const provider = new GithubAuthProvider();
@@ -144,6 +147,8 @@ export const loginWithGithub = async () => {
     console.log(error);
   }
 };
+
+//로그아웃
 
 export const signOutFunc = async (callback) => {
   try {
