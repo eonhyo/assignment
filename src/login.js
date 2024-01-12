@@ -33,7 +33,7 @@ onAuthStateChanged(auth, (user) => {
     console.log("사용자가 로그인함:", user.uid);
     goToAnotherPage("/");
   } else {
-    console.log("사용자가 로그아웃함");
+    console.log("사용자 로그인 안 했음");
     removeLoading();
   }
 });
@@ -46,18 +46,21 @@ const emailErr = document.getElementById("signIn-email-error");
 const passwordErr = document.getElementById("signIn-pw-error");
 const errorArray = [emailErr, passwordErr];
 
+//유효성 검사 에러 메세지 한번에 지우기
 const resetErrorMsg = () => {
   errorArray.forEach((el) => {
     removeText(el);
   });
 };
 
+//인풋에 뭔가 입력할 땐 에러가 안 뜨게
 infoArray.forEach((info, i) => {
   info.addEventListener("input", (e) => {
     e.target.value ? removeText(errorArray[i]) : "";
   });
 });
 
+//유효성 검사 로직
 const validationCheck = (email, password) => {
   let isAuth = true;
 
@@ -83,22 +86,17 @@ const validationCheck = (email, password) => {
   return isAuth;
 };
 
-const successLogin = () => {
-  console.log("로그인 하셨습니다");
-};
-
-const failLogin = () => {
-  console.log("로그인에 실패 하셨습니다.");
-};
-
 document.getElementById("signIn-button").addEventListener("click", (event) => {
   event.preventDefault();
   resetErrorMsg();
   const email = emailEl.value;
   const password = passwordEl.value;
-  validationCheck(email, password) ? loginFunc(email, password, successLogin, failLogin) : null;
+
+  //내부로직에 의한 유효성검사가 끝나면 로그인 함수를 실행한다.
+  validationCheck(email, password) ? loginFunc(email, password) : null;
 });
 
+//구글 로그인 함수
 document.getElementById("google-login-btn").addEventListener("click", (event) => {
   {
     event.preventDefault();
@@ -108,11 +106,12 @@ document.getElementById("google-login-btn").addEventListener("click", (event) =>
   }
 });
 
-document.getElementById("github-login-btn").addEventListener("click", (event) => {
-  {
-    event.preventDefault();
-    loginWithGithub();
-    addLoading();
-    setLocalStorage("login", "true");
-  }
-});
+//깃헙 로그인 함수. 현재 쓰지 않음
+// document.getElementById("github-login-btn").addEventListener("click", (event) => {
+//   {
+//     event.preventDefault();
+//     loginWithGithub();
+//     addLoading();
+//     setLocalStorage("login", "true");
+//   }
+// });

@@ -1,5 +1,5 @@
 import { onAuthStateChanged, auth } from "./firebase.js";
-import { getLocalStorage, goToAnotherPage, setLocalStorage } from "./module.js";
+import { goToAnotherPage, setLocalStorage } from "./module.js";
 
 const API_KEY = "api_key=2f7ff395e001967bcd029e4d663de74c";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -25,10 +25,11 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     // 사용자가 로그인한 경우
     console.log("사용자가 로그인함:", user.uid);
+    // 이름과 사진을 받아와서 스토리지에 저장
     setLocalStorage("userName", user.displayName);
+    // 프로필 이미지에 뿌리기!
     setLocalStorage("userPhoto", user.photoURL);
     const profileImg = document.querySelector(".profileImg");
-    console.log(user.photoURL);
     profileImg.src = user.photoURL;
     showProfilePic();
   } else {
@@ -37,6 +38,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+//편집 화면으로 이동
 profileSection.addEventListener("click", () => {
   goToAnotherPage("../sub/profile");
 });
