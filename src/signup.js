@@ -43,6 +43,7 @@ onAuthStateChanged(auth, (user) => {
     console.log("사용자가 로그인함:", user.uid);
     setLocalStorage("userName", user.displayName);
     setLocalStorage("userPhoto", user.photoURL);
+    console.log(user.photoURL);
     goToAnotherPage("/");
   } else {
     console.log("사용자가 로그아웃함");
