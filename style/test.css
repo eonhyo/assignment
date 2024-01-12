@@ -35,6 +35,15 @@ input:-webkit-autofill:active {
   background-color: transparent !important;
 }
 
+header {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+}
+header > a > img {
+  width: 130px;
+}
+
 h1 {
   font-size: 3rem;
 }

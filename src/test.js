@@ -8,9 +8,10 @@ signOut.addEventListener("click", () => {
   if (getLocalStorage("userName")) {
     removeLocalStorage("userName");
     removeLocalStorage("userPhoto");
+    removeLocalStorage("login");
   }
 
-  signOutFunc(goToAnotherPage("../sub/login"));
+  signOutFunc(goToAnotherPage("/"));
 });
 
 //로그인해서 들어오면 로컬스토리지에 저장된 값 가져오기

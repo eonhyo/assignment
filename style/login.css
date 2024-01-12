@@ -43,6 +43,14 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   background-color: transparent !important;
 }
+header {
+  position: absolute;
+  top: 36px;
+  left: 36px;
+}
+header > a > img {
+  width: 130px;
+}
 
 .defaultInput {
   width: 100%;
@@ -123,4 +131,36 @@ input:-webkit-autofill:active {
 
 #google-login-btn {
   color: #000 !important;
+}
+
+.snsBtnWrap {
+  height: 70px;
+  margin-top: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.snsBtnWrap p {
+  width: 100%;
+  text-align: center;
+}
+.snsBtnWrap1 {
+  background-color: rgb(177, 80, 67);
+}
+
+.loader {
+  display: none;
+}
+
+.snsLogin {
+  background-color: transparent;
+  border: none;
+}
+.snsBtnWrap2 {
+  background-color: rgb(142, 94, 180);
 }

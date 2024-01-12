@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  GithubAuthProvider,
   signInWithRedirect,
   getRedirectResult,
   onAuthStateChanged
@@ -151,8 +152,15 @@ export const loginWithGoogle = async () => {
 
 export const loginWithGithub = async () => {
   try {
-    const provider = new GoogleAuthProvider();
-    await new signInWithPopup(auth, provider);
+    const provider = new GithubAuthProvider();
+    await new signInWithRedirect(auth, provider);
+
+    const result = await getRedirectResult(auth);
+    if (result.user) {
+      console.log("Githb 로그인 성공:", result.user);
+    } else {
+      console.log("Github 로그인 실패:", result);
+    }
   } catch (error) {
     console.log(error);
   }
