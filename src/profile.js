@@ -22,18 +22,14 @@ if (getLocalStorage("userName")) {
   userImg.src = getLocalStorage("userPhoto");
 }
 
-//사진 업로드 기능 구현중
+//사진 업로드 기능 구현
 document.querySelector("#inputImage").addEventListener("change", (e) => {
   const file = e.target.files[0];
-
-  uploadProfileImg(file);
-
+  //읽어와서 화면에 뿌림
   const reader = new FileReader();
-
   reader.onload = (e) => {
     document.querySelector(".userImg").src = e.target.result;
   };
-
   reader.readAsDataURL(file);
 });
 
