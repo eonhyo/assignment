@@ -1,0 +1,250 @@
+:root {
+  --button-border-radius: 5px;
+  --modalcontext-margin-top: 3rem;
+  --modalcontext-form-height: 3rem;
+  --mouse-hover-background-color: #02a7f7;
+  --media-height-basic: 30px;
+}
+
+body {
+  background-color: black;
+  text-align: center;
+  height: 100%;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.getstar {
+  display: flex;
+  justify-content: space-evenly;
+}
+.star {
+  display: none;
+}
+
+.starlabel .staricon {
+  display: inline-block;
+  font-size: 3rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.staricon.filled i {
+  color: #02a7f7;
+}
+
+.starlabel {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.075);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  border-radius: var(--button-border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+}
+
+.modalContent {
+  background-color: black;
+  margin: auto;
+  padding: auto;
+  width: 70%;
+  height: 900px; /* 높이를 auto로 설정하여 내용에 맞게 조정 */
+  max-height: 100%;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 가로축 중앙 정렬 */
+  justify-content: start; /* 세로축 상단 정렬 */
+  overflow: auto; /* 내용이 넘칠 경우 스크롤 허용 */
+}
+
+.reviewform {
+  width: 40%;
+  height: auto;
+  margin-top: var(--modalcontext-margin-top);
+}
+
+.aspects,
+.emotions {
+  display: flex;
+  justify-content: center;
+}
+
+/*포인트 박스들 스타일 변경*/
+.aspect-item,
+.emotion-item {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #d0d0d0; /* 기본 테두리 */
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s; /* 부드러운 색상 변화 효과 */
+  width: 40%;
+  height: 20%;
+  white-space: nowrap;
+}
+
+/*포인트들 클릭 시 스타일 변경 */
+.aspect-item.active,
+.emotion-item.active {
+  background-color: var(--mouse-hover-background-color);
+  color: white;
+  border-color: var(--mouse-hover-background-color);
+}
+
+/*리뷰 입력값 스타일*/
+.input {
+  width: 100%;
+  height: 60px;
+  border-radius: var(--button-border-radius);
+  text-align: center;
+  background-color: transparent;
+  border-color: white;
+  color: white;
+  margin-top: var(--modalcontext-margin-top);
+}
+
+/* 등록하기&취소하기 버튼 컨테이너 스타일 */
+.getdata {
+  display: flex;
+  justify-content: center; /* 버튼을 중앙에 배치 */
+  margin-top: var(--modalcontext-margin-top);
+  width: 100%; /* 컨테이너의 너비를 조절 */
+}
+
+.getpersonal {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.name,
+.password {
+  border-color: white;
+  border-radius: 3px;
+  background-color: transparent;
+  color: white;
+  width: 40%; /* 버튼 너비 */
+  height: var(--modalcontext-form-height);
+  margin-top: var(--modalcontext-margin-top);
+  text-align: center;
+}
+
+.getdata button {
+  cursor: pointer; /* 마우스 오버시 커서 변경 */
+  border-color: white;
+  border-radius: 3px;
+  background-color: transparent;
+  color: white;
+  width: 30%; /* 버튼 너비 */
+  height: var(--modalcontext-form-height);
+  margin: auto;
+  background-color: var(--mouse-hover-background-color);
+  border: 0;
+  white-space: nowrap;
+}
+
+.open {
+  background-color: #02a7f7;
+  width: 70%;
+  height: 40px;
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.success {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success li {
+  padding: 10px;
+  margin: 0.5rem 0;
+  width: 80%;
+  text-align: left;
+  border: 1px solid white;
+  background-color: transparent;
+  border-radius: var(--button-border-radius);
+}
+
+.success ul {
+  list-style: none;
+  padding: 4;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*반응형*/
+@media screen and (max-width: 1200px) {
+  body {
+    height: 100%;
+    font-size: small;
+    font-weight: bold;
+  }
+
+  .starlabel .staricon {
+    font-size: 2rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .reviewform {
+    width: 60%;
+    margin-top: var(--modalcontext-margin-top);
+  }
+
+  .input {
+    width: 100%;
+    height: var(--media-height-basic);
+    border-radius: var(--button-border-radius);
+  }
+
+  .name,
+  .password {
+    width: 90%;
+    height: var(--media-height-basic);
+    margin-right: 5px;
+  }
+
+  .getdata button {
+    width: 800%;
+    height: var(--media-height-basic);
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+  }
+
+  .point1 {
+    margin-top: 35px;
+  }
+
+  .aspect-item,
+  .emotion-item {
+    padding: 6px;
+    margin-left: 3px;
+    width: 40%;
+    height: 20%;
+  }
+}

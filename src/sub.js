@@ -1,7 +1,9 @@
+import updateReviewList from "./statelist.js";
+
 const urlParams = new URLSearchParams(window.location.search);
 const itemId = urlParams.get("id");
 console.log("Item ID:", itemId);
-const API_KEY = apiKey;
+const API_KEY = "api_key=2f7ff395e001967bcd029e4d663de74c";
 const BASE_URL = "https://api.themoviedb.org/3/movie/";
 const FULL_URL = `${BASE_URL + itemId}?language=en-US&${API_KEY}`;
 
@@ -15,7 +17,6 @@ const fetchMovieDetails = () => {
 fetchMovieDetails();
 
 const showMovieDetails = (movie) => {
-  console.log(movie);
   const chosenMoviePage = document.getElementById("chosen-movie-page");
   const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -46,9 +47,9 @@ const showMovieDetails = (movie) => {
           </div>
         </div>
         <div id="review-box">
-
         </div>
       </section>
     </article>
   `;
+  updateReviewList(movie.id);
 };
