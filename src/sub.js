@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const itemId = urlParams.get("id");
 console.log("Item ID:", itemId);
-const API_KEY = apiKey;
+const API_KEY = api.key;
 const BASE_URL = "https://api.themoviedb.org/3/movie/";
 const FULL_URL = `${BASE_URL + itemId}?language=en-US&${API_KEY}`;
 
