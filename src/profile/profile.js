@@ -22,8 +22,10 @@ if (getLocalStorage("userName")) {
   userImg.src = getLocalStorage("userPhoto");
 }
 
+let photoFileChanged = false;
 //사진 업로드 기능 구현
 document.querySelector("#inputImage").addEventListener("change", (e) => {
+  photoFileChanged = true;
   const file = e.target.files[0];
   //읽어와서 화면에 뿌림
   const reader = new FileReader();
@@ -37,10 +39,15 @@ document.querySelector("#inputImage").addEventListener("change", (e) => {
 document.getElementById("confirm").addEventListener("click", () => {
   const userName = document.querySelector("#name").value;
   const photoFile = document.querySelector("#inputImage").files[0];
+
+  if (photoFileChanged) {
+    uploadProfileImg(photoFile);
+  }
+
   updateUserInfo(userName);
-  uploadProfileImg(photoFile);
-  setLocalStorage("userName", userName);
-  setLocalStorage("userPhoto", document.querySelector(".userImg").src);
+
+  //setLocalStorage("userName", userName);
+  //setLocalStorage("userPhoto", document.querySelector(".userImg").src);
 });
 
 // 모달 관련 로직
