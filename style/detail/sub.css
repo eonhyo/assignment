@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+}
+
+nav {
+  display: flex;
+  height: 25px;
+  padding: 18px 35px;
+  justify-content: space-between;
+}
+nav .logo_img {
+  cursor: pointer;
+}
+
+nav img {
+  height: 35px;
+}
+
+nav button {
+  width: 100px;
+  height: 35px;
+  background-color: #02a7f7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+#poster-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#poster-section img {
+  height: 85vh;
+}
+
+#info-section {
+  margin: 20px 0;
+  padding-right: 40px;
+  text-align: left;
+}
+
+.title-box {
+  display: flex;
+}
+
+.title-box h1 {
+  font-size: 3cqmax;
+  padding: 10px 0 20px 0;
+}
+
+.releas-date {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding-left: 7px;
+  color: #c1c1c1;
+}
+
+.vote-star {
+  padding-top: 30px;
+  font-size: 2rem;
+  margin-left: auto;
+}
+
+.vote-star img {
+  width: 30px;
+}
+
+.details-box {
+  display: flex;
+  margin-bottom: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.film-box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* height: 35vh; */
+  padding: 0 15px;
+  background-color: #000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px 2px #02a5f7bc;
+  align-items: center;
+  margin-right: 35px;
+}
+
+.back-porster {
+  height: 25vh;
+  padding: 30px;
+}
+
+.film-bar {
+  height: 30vh;
+}
+
+.info-box {
+  padding-top: 8px;
+  border-radius: 10px;
+}
+
+.tag-line {
+  font-size: 1.5rem;
+  font-style: italic;
+  text-shadow: 3px 3px 10px #02a7f7;
+  padding-bottom: 25px;
+}
+
+.plot {
+  font-size: 13px;
+  color: #9e9e9e;
+  padding-bottom: 20px;
+}
+
+.homepage-btn img {
+  height: 40px;
+}
+
+#review-section {
+  height: 30vh;
+  border: 2px solid #02a5f783;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  main {
+    display: block;
+  }
+
+  #info-section {
+    margin: 0 30px;
+    padding: 0;
+  }
+}

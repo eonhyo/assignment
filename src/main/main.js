@@ -1,5 +1,5 @@
-import { onAuthStateChanged, auth } from "./firebase.js";
-import { goToAnotherPage, setLocalStorage } from "./module.js";
+import { onAuthStateChanged, auth } from "../login/firebase.js";
+import { goToAnotherPage, setLocalStorage } from "../common/module.js";
 
 const API_KEY = "api_key=2f7ff395e001967bcd029e4d663de74c";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -28,6 +28,7 @@ onAuthStateChanged(auth, (user) => {
     setLocalStorage("userName", user.displayName);
     // 프로필 이미지에 뿌리기!
     setLocalStorage("userPhoto", user.photoURL);
+    console.log(user.photoURL);
     const profileImg = document.querySelector(".profileImg");
     profileImg.src = user.photoURL;
     showProfilePic();

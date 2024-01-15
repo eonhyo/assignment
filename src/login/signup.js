@@ -6,7 +6,7 @@ import {
   showText,
   getLocalStorage,
   setLocalStorage
-} from "./module.js";
+} from "../common/module.js";
 
 //스토리지에 유저이름이 저장돼 있으면 홈으로 이동한다.
 if (getLocalStorage("userName")) {
@@ -33,16 +33,16 @@ if (getLocalStorage("login") === "true") {
   addLoading();
 }
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // 사용자가 로그인한 경우
-    console.log("사용자가 로그인함:", user.uid);
-    goToAnotherPage("/");
-  } else {
-    console.log("사용자 로그인 안 함");
-    removeLoading();
-  }
-});
+// onAuthStateChanged(auth, (user) => {
+//   if (user) {
+//     // 사용자가 로그인한 경우
+//     console.log("사용자가 로그인함:", user.uid);
+//     goToAnotherPage("/");
+//   } else {
+//     console.log("사용자 로그인 안 함");
+//     removeLoading();
+//   }
+// });
 
 const nameErr = document.getElementById("name-error");
 const emailErr = document.getElementById("email-error");

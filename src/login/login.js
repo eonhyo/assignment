@@ -6,7 +6,7 @@ import {
   showText,
   setLocalStorage,
   getLocalStorage
-} from "./module.js";
+} from "../common/module.js";
 
 const addLoading = () => {
   console.log("loading...");
