@@ -14,6 +14,9 @@ nav {
   padding: 18px 35px;
   justify-content: space-between;
 }
+nav .logo_img {
+  cursor: pointer;
+}
 
 nav img {
   height: 35px;

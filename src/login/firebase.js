@@ -11,7 +11,7 @@ import {
   getRedirectResult,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { goToAnotherPage } from "./module.js";
+import { goToAnotherPage } from "../common/module.js";
 import {
   getStorage,
   uploadBytes,

@@ -37,7 +37,7 @@ input:-webkit-autofill:active {
 
 header {
   position: absolute;
-  top: 36px;
+  top: 18px;
   left: 36px;
 }
 header > a > img {
