@@ -1,5 +1,5 @@
-import { signOutFunc, updateUserInfo, uploadProfileImg } from "./firebase.js";
-import { getLocalStorage, goToAnotherPage, removeLocalStorage, setLocalStorage } from "./module.js";
+import { signOutFunc, updateUserInfo, uploadProfileImg } from "../login/firebase.js";
+import { getLocalStorage, goToAnotherPage, removeLocalStorage, setLocalStorage } from "../common/module.js";
 
 const signOut = document.getElementById("signOut");
 

@@ -26,13 +26,15 @@ const showMovies = (data) => {
   main.innerHTML = "";
 
   data.forEach((movie) => {
-    const { title, poster_path, vote_average, overview } = movie;
+    const { title, poster_path, vote_average, overview, backdrop_path, release_date, id } = movie;
     const movierating = vote_average.toFixed(1);
     const movieEl = document.createElement("div");
     movieEl.classList.add("movie");
+    const posterUrl = `${IMG_URL}${poster_path}`;
+    const backPosterUrl = `${IMG_URL}${backdrop_path}`;
 
     movieEl.addEventListener("click", () => {
-      alert("Movie ID :" + movie.id);
+      window.location.href = `sub/sub.html?id=${id}`;
     });
 
     movieEl.innerHTML = `
@@ -50,24 +52,10 @@ const showMovies = (data) => {
   });
 };
 
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   const searchTerm = search.value;
-//   if (searchTerm) {
-//     getMovies(searchURL + "&query=" + searchTerm);
-//   }
-//   if (!searchTerm) {
-//     alert("검색어를 입력하세요.");
-//   }
-// });
-
-document.getElementById("searchForm").addEventListener("submit", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const searchTerm = document.getElementById("search").value;
+  const searchTerm = search.value;
   if (searchTerm) {
     getMovies(searchURL + "&query=" + searchTerm);
-  } else {
-    alert("검색어를 입력하세요.");
-    window.location.reload();
   }
 });

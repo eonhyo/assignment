@@ -4,26 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>쿠팡플레이</title>
-    <link rel="stylesheet" href="../style/sub.css" />
-    <link rel="stylesheet" href="../style/review.css" />
-    <script defer src="../src/key.js"></script>
-
-    <script type="module" defer src="../src/sub.js"></script>
-
-    <script src="../src/openModal.js"></script>
-    <script src="../src/getstar.js"></script>
-    <script src="../src/getpoint.js"></script>
-    <script src="../src/getReview.js"></script>
-    <script src="../src/getpersonal.js"></script>
-    <script type="module" src="../src/pushLocalstorage.js"></script>
-    <script src="../src/closeModal.js"></script>
+    <link rel="stylesheet" href="../style/detail/sub.css" />
+    <link rel="stylesheet" href="../style/review/review.css" />
+    <script type="module" defer src="../src/detail/sub.js"></script>
+    <script type="module" src="../src/review/pushLocalstorage.js"></script>
+    <script src="../src/review/openModal.js"></script>
+    <script src="../src/review/getstar.js"></script>
+    <script src="../src/review/getpoint.js"></script>
+    <script src="../src/review/getReview.js"></script>
+    <script src="../src/review/getpersonal.js"></script>
+    <script src="../src/review/closeModal.js"></script>
     <script src="https://kit.fontawesome.com/1f700c87c6.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <header>
       <nav>
-        <img src="../assets/main/logo_sparta_play.png" alt="" />
-        <button>Home</button>
+        <a class="logo_img" href="/"><img src="../assets/main/logo_sparta_play.png" alt="" /></a>
       </nav>
     </header>
     <main id="chosen-movie-page">
@@ -45,7 +41,6 @@
         </section>
       </article>
     </main>
-
     <div class="modal" id="myModal">
       <div class="modalContent">
         <form class="reviewform" id="reviewform">
@@ -128,6 +123,4 @@
         </form>
       </div>
     </div>
-
-
 </html>
