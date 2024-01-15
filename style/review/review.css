@@ -2,8 +2,9 @@
   --button-border-radius: 5px;
   --modalcontext-margin-top: 3rem;
   --modalcontext-form-height: 3rem;
-  --mouse-hover-background-color: #02a7f7;
+  --button-background-color: #02a7f7;
   --media-height-basic: 30px;
+  --bax-shadow: 3px 3px 5px 2px #00466a inset;
 }
 
 body {
@@ -104,9 +105,9 @@ body {
 /*포인트들 클릭 시 스타일 변경 */
 .aspect-item.active,
 .emotion-item.active {
-  background-color: var(--mouse-hover-background-color);
+  background-color: var(--button-background-color);
   color: white;
-  border-color: var(--mouse-hover-background-color);
+  border-color: var(--button-background-color);
 }
 
 /*리뷰 입력값 스타일*/
@@ -155,44 +156,59 @@ body {
   width: 30%; /* 버튼 너비 */
   height: var(--modalcontext-form-height);
   margin: auto;
-  background-color: var(--mouse-hover-background-color);
+  background-color: var(--button-background-color);
   border: 0;
   white-space: nowrap;
 }
 
+.getdata button:hover {
+  box-shadow: var(--bax-shadow);
+}
+
 .open {
-  background-color: #02a7f7;
-  width: 70%;
+  width: 20%;
   height: 40px;
-  color: white;
+  top: 0;
+  float: right;
+  align-self: flex-start;
+  position: sticky;
+
   font-size: larger;
   font-weight: bold;
+  background-color: #02a7f7;
+  color: white;
+  border: none;
+  border-radius: var(--button-border-radius);
+}
+
+.open:hover {
+  cursor: pointer;
+  box-shadow: var(--bax-shadow);
 }
 
 .success {
   color: white;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.success li {
-  padding: 10px;
-  margin: 0.5rem 0;
-  width: 80%;
-  text-align: left;
-  border: 1px solid white;
-  background-color: transparent;
-  border-radius: var(--button-border-radius);
+  align-items: center; */
 }
 
 .success ul {
   list-style: none;
   padding: 4;
   width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+}
+
+.success li {
+  padding: 10px;
+  width: 90%;
+  text-align: left;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  /* border-radius: var(--button-border-radius); */
 }
 
 /*반응형*/
