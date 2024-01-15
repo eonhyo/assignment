@@ -17,7 +17,6 @@ const fetchMovieDetails = () => {
 fetchMovieDetails();
 
 const showMovieDetails = (movie) => {
-  const chosenMoviePage = document.getElementById("chosen-movie-page");
   const IMG_URL = "https://image.tmdb.org/t/p/w500";
   const POSTER_SECTION = document.getElementById("poster-section");
   const INFO_SECTION = document.getElementById("info-section");
@@ -34,7 +33,7 @@ const showMovieDetails = (movie) => {
           </h1>
           <p class="vote-star">
             <img src="../assets/main/star.svg" />
-            ${Math.ceil((movie.vote_average / 2) * 10) / 10}
+            ${Math.ceil(movie.vote_average * 10) / 10}
           </p>
         </div>
         <div class="details-box">
