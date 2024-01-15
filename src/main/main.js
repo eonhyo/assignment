@@ -133,6 +133,8 @@ sortByNameBtn.addEventListener("click", () => {
   sortMoviesByName();
 });
 
+let byRating = true;
+
 function sortMoviesByRating() {
   const moviesContainer = document.getElementById("main");
   const movies = Array.from(moviesContainer.children);
@@ -142,14 +144,17 @@ function sortMoviesByRating() {
       element: movie,
       rating: Number(movie.querySelector(".green").textContent)
     }))
-    .sort((a, b) => b.rating - a.rating)
+    .sort((a, b) => (byRating ? a.rating - b.rating : b.rating - a.rating))
     .map((movie) => movie.element);
 
   moviesContainer.innerHTML = "";
   sortedMovies.forEach((movie) => {
     moviesContainer.appendChild(movie);
   });
+  byRating = !byRating;
 }
+
+let byName = true;
 
 function sortMoviesByName() {
   const moviesContainer = document.getElementById("main");
@@ -160,11 +165,12 @@ function sortMoviesByName() {
       element: movie,
       title: movie.querySelector(".movieinfo h3").textContent
     }))
-    .sort((a, b) => a.title.localeCompare(b.title))
+    .sort((a, b) => (byName ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)))
     .map((movie) => movie.element);
 
   moviesContainer.innerHTML = "";
   sortedMovies.forEach((movie) => {
     moviesContainer.appendChild(movie);
   });
+  byName = !byName;
 }
