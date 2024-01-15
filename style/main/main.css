@@ -2,6 +2,7 @@ body {
   background-color: #000;
 }
 
+/* 상단 내비게이션 */
 .section1 {
   line-height: 1.15;
   font-size: 1rem;
@@ -21,12 +22,7 @@ body {
   background: linear-gradient(180deg, #000, transparent);
 }
 
-.openFeedNavbar {
-  display: flex;
-  justify-content: right;
-  flex-direction: row;
-}
-
+/* 로그인, 회원가입 */
 .joinWrap {
   display: flex;
 }
@@ -66,6 +62,7 @@ a {
   border: 1px solid #555;
 }
 
+/* 슬라이드 부분 */
 .outer {
   margin: 10px 10% 10px 10%;
   overflow-x: hidden;
@@ -147,6 +144,26 @@ a {
   top: 180px;
 }
 
+.sliderMovie {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-left: 40px;
+}
+
+.sprtaSeries {
+  padding: 2px 4px;
+  width: 130px;
+  height: 25px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.sparta {
+  color: #00a7f6;
+}
+
+/* 정렬기능 */
 #sortByName {
   background-color: transparent;
   border: none;
@@ -167,32 +184,18 @@ a {
   cursor: pointer;
 }
 
-/* 슬라이더 왼쪽 영화정보 */
-.sliderMovie {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  margin-left: 40px;
-}
-
-.sprtaSeries {
-  padding: 2px 4px;
-  width: 130px;
-  height: 25px;
-  border: 1px solid #555;
-  border-radius: 4px;
-  font-weight: 600;
-}
-.sparta {
-  color: #00a7f6;
-}
-
+/* 영화 리스트 */
 .movieList {
   color: white;
 }
 .movieList h2 {
   margin-left: 160px;
   font-size: 2rem;
+}
+.openFeedNavbar {
+  display: flex;
+  justify-content: right;
+  margin-right: 8%;
 }
 
 /* profile  */
