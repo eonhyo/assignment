@@ -9,8 +9,10 @@ export default function updateReviewList(value) {
       li.innerHTML = `
     <em>${review.stars}</em>
     <br>
+    <em>${review.name}</em> 
     <br>
-    <em>${review.name}</em> <em>${review.impressions}</em>
+    <br>
+    <em>${review.impressions}</em>
     <br>
     <br>
     <em>${review.aspects}</em> <em>${review.emotions}</em> <em> ${review.date}</em>
