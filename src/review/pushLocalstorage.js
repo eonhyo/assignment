@@ -19,13 +19,13 @@ function getSelectedStars() {
 function getSelectedAspects() {
   return Array.from(document.querySelectorAll(".aspects .aspect-item.active"))
     .map((el) => `#${el.textContent}`)
-    .join(", ");
+    .join(" ");
 }
 
 function getSelectedEmotions() {
   return Array.from(document.querySelectorAll(".emotions .emotion-item.active"))
     .map((el) => `#${el.textContent}`)
-    .join(", ");
+    .join(" ");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -33,10 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeButton = new CloseButton(modalInstance);
   const personalInfo = new PersonalInfo();
   const submitButton = document.getElementById("submit");
-  if (!submitButton) {
-    console.error("Submit button not found");
-    return;
-  }
+
   submitButton.addEventListener("click", (event) => {
     event.preventDefault();
     if (personalInfo.validateName() && personalInfo.validatePassword()) {
