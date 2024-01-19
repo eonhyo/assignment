@@ -16,7 +16,7 @@ class StarRating {
     this.starIcons.forEach((icon, index) => {
       if (index <= selectedIndex) {
         icon.classList.add("filled");
-        score += 2;
+        // score += 2;
       } else {
         icon.classList.remove("filled");
       }

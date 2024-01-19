@@ -18,7 +18,6 @@ class AspectPoints {
     this.selectedAspects = Array.from(this.aspects)
       .filter((item) => item.classList.contains("active"))
       .map((item) => item.textContent);
-    console.log("Selected Aspects:", this.selectedAspects);
   }
 }
 
